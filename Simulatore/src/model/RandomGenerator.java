@@ -1,12 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.apache.commons.math.random.MersenneTwister;
 
 public class RandomGenerator {
 	private ArrayList<double[]> log;
-	private MersenneTwister rnd;
+	private Random rnd;
 	private DistributionType type;
 	//Esponenziale
 	private double lambda0;
@@ -40,7 +41,7 @@ public class RandomGenerator {
 	 */
 	public RandomGenerator(DistributionType type,double[] param){
 		log = new ArrayList<double[]>();
-		rnd = new MersenneTwister();
+		rnd = new Random();
 		double lambdaMed,r;
 		this.type=type;
 		switch(type){
