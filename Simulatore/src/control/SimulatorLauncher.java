@@ -82,27 +82,32 @@ public class SimulatorLauncher {
 		switch(caseC){
 		case Caso1:
 			rhos = new double[2];
-			log = new double[xVal-1][3];
+			log = new double[xVal][5];
 			i=0;
-			logFrm.getJPBstatus().setMaximum(xVal-1);
-			step=1.0/xVal;
+			logFrm.getJPBstatus().setMaximum(xVal);
+			step=1.0/(xVal+1);
+			System.out.println(" "+step);
 			x=step;
 			try{
-				while (x<1){
+				//while (x<1.0){
+				while(i<xVal){
 					rhos[0]= x*rho;
 					rhos[1]= (1-x)*rho;
 					double[][] results = new MG1PRIOsimulator(N, 2, rhos, mu, nSim, logFrm).run();
 					double[] partial = new double[nSim];
 					log[i][0]=x;
-				
 					for(int k=0; k<2; k++){
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
-						double media = Utility.mediaCamp(partial); 
+						double media = Utility.mediaCamp(partial);
+						double semi = Utility.semiAmpiezza(partial, nSim, 0.95);
+						//System.out.print(" "+media);
 						log[i][k+1]= media;
+						log[i][k+3]= semi;
 						
 					}
-					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]);
+					System.out.println();
+					//logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
@@ -114,28 +119,31 @@ public class SimulatorLauncher {
 			break;
 		case Caso2:
 			rhos = new double[3];
-			log = new double[xVal-1][4];
+			log = new double[xVal][7];
 			i=0;
-			logFrm.getJPBstatus().setMaximum(xVal-1);
-			step=1.0/xVal;
+			logFrm.getJPBstatus().setMaximum(xVal);
+			step=1.0/(xVal+1);
 			x=step;
 			try{
-				while (x<1){
+				while(i<xVal){
+				//while (x<1){
 					rhos[0]= x/2*rho;
 					rhos[1]= x/2*rho;
 					rhos[2]= (1-x)*rho;
 					double[][] results = new MG1PRIOsimulator(N, 3, rhos, mu, nSim, logFrm).run();
 					double[] partial = new double[nSim];
 					log[i][0]=x;
-				
 					for(int k=0; k<3; k++){
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
+						double semi = Utility.semiAmpiezza(partial, nSim, 0.95);
+						//System.out.print(" "+media);
 						log[i][k+1]= media;
+						log[i][k+4]= semi;
 						
 					}
-					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
+					//logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
@@ -147,28 +155,31 @@ public class SimulatorLauncher {
 			break;
 		case Caso3:
 			rhos = new double[3];
-			log = new double[xVal-1][4];
+			log = new double[xVal][7];
 			i=0;
-			logFrm.getJPBstatus().setMaximum(xVal-1);
-			step=1.0/xVal;
+			logFrm.getJPBstatus().setMaximum(xVal);
+			step=1.0/(xVal+1);
 			x=step;
 			try{
-				while (x<1){
+				while(i<xVal){
+				//while (x<1){
 					rhos[0]= x/10*rho;
 					rhos[1]= x*9/10*rho;
 					rhos[2]= (1-x)*rho;
 					double[][] results = new MG1PRIOsimulator(N, 3, rhos, mu, nSim, logFrm).run();
 					double[] partial = new double[nSim];
 					log[i][0]=x;
-				
 					for(int k=0; k<3; k++){
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
+						double semi = Utility.semiAmpiezza(partial, nSim, 0.95);
+						//System.out.print(" "+media);
 						log[i][k+1]= media;
+						log[i][k+4]= semi;
 						
 					}
-					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
+					//logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
@@ -180,28 +191,31 @@ public class SimulatorLauncher {
 			break;
 		case Caso4:
 			rhos = new double[3];
-			log = new double[xVal-1][4];
+			log = new double[xVal][7];
 			i=0;
-			logFrm.getJPBstatus().setMaximum(xVal-1);
-			step=1.0/xVal;
+			logFrm.getJPBstatus().setMaximum(xVal);
+			step=1.0/(xVal+1);
 			x=step;
 			try{
-				while (x<1){
+				while(i<xVal){
+				//while (x<1){
 					rhos[0]= x*rho;
 					rhos[1]= (1-x)/2*rho;
 					rhos[2]= (1-x)/2*rho;
 					double[][] results = new MG1PRIOsimulator(N, 3, rhos, mu, nSim, logFrm).run();
 					double[] partial = new double[nSim];
 					log[i][0]=x;
-				
 					for(int k=0; k<3; k++){
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
+						double semi = Utility.semiAmpiezza(partial, nSim, 0.95);
+						//System.out.print(" "+media);
 						log[i][k+1]= media;
+						log[i][k+4]= semi;
 						
 					}
-					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
+					//logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
