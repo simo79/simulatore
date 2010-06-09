@@ -2,6 +2,7 @@ package control.engine;
 
 import java.util.Vector;
 import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.PriorityQueue;
 
 import view.LogForm;
 
@@ -13,9 +14,13 @@ import model.enumerators.EventType;
 
 public class MG1PRIOsimulator {
 	
-	private ConcurrentSkipListSet<PriorityEventNotice> futureEventList;
+	//private ConcurrentSkipListSet<PriorityEventNotice> futureEventList;
 	
-	private Vector<ConcurrentSkipListSet<PriorityQueueElement>> priorityQueues;
+	private PriorityQueue<PriorityEventNotice> futureEventList;
+	
+	//private Vector<ConcurrentSkipListSet<PriorityQueueElement>> priorityQueues;
+	
+	Vector<PriorityQueue<PriorityQueueElement>> priorityQueues;
 	
 	private int nClasses;
 
@@ -56,8 +61,8 @@ public class MG1PRIOsimulator {
 		this.N=N;
 		logFrm=null;
 		
-		priorityQueues = new Vector<ConcurrentSkipListSet<PriorityQueueElement>>();
-		futureEventList = new ConcurrentSkipListSet<PriorityEventNotice>();
+		priorityQueues = new Vector<PriorityQueue<PriorityQueueElement>>();
+		futureEventList = new PriorityQueue<PriorityEventNotice>();
 		
 		classArrival = new int[nClasses];
 		classDeparture = new int[nClasses];
@@ -68,7 +73,7 @@ public class MG1PRIOsimulator {
 		
 		for(int i=0; i<nClasses; i++){
 			rndArrivi[i]=new RandomGenerator(DistributionType.Exponential, new double[]{rho[i]/mu});
-			priorityQueues.add(i, new ConcurrentSkipListSet<PriorityQueueElement>());
+			priorityQueues.add(i, new PriorityQueue<PriorityQueueElement>());
 		}
 	}
 	/**
@@ -92,8 +97,8 @@ public class MG1PRIOsimulator {
 		totDeparture=0;
 		totUser=0;
 		Id=0;
-		futureEventList = new ConcurrentSkipListSet<PriorityEventNotice>();
-		priorityQueues = new Vector<ConcurrentSkipListSet<PriorityQueueElement>>();
+		futureEventList = new PriorityQueue<PriorityEventNotice>();
+		priorityQueues = new Vector<PriorityQueue<PriorityQueueElement>>();
 		for(int i=0;i<nClasses;i++){
 			classArrival[i]=0;
 			classDeparture[i]=0;
@@ -101,7 +106,7 @@ public class MG1PRIOsimulator {
 			double rndArr= rndArrivi[i].nextRandom();
 			double rndSer= rndServizio.nextRandom();
 			futureEventList.add(new PriorityEventNotice(Id,rndArr, EventType.Arrival,rndSer , i));
-			priorityQueues.add(i, new ConcurrentSkipListSet<PriorityQueueElement>());
+			priorityQueues.add(i, new PriorityQueue<PriorityQueueElement>());
 			Id++;
 		}
 		Object[] tmp = futureEventList.toArray();
@@ -122,7 +127,7 @@ public class MG1PRIOsimulator {
 			System.out.println("simulazione: "+step);
 			inizializza();
 			while (totDeparture < N) {
-				PriorityEventNotice e = futureEventList.pollFirst();
+				PriorityEventNotice e = futureEventList.poll();
 				now = e.getOccurrenceTime();
 				if (e.getEventType() == EventType.Arrival) {
 					totUser++;
@@ -153,7 +158,7 @@ public class MG1PRIOsimulator {
 						int j = 0;
 						while (priorityQueues.get(j).isEmpty()) 
 							j++;
-						PriorityQueueElement elem = priorityQueues.get(j).pollFirst();
+						PriorityQueueElement elem = priorityQueues.get(j).poll();
 						wait[j] = wait[j] + (now -elem.getOccurrenceTime());
 						futureEventList.add(new PriorityEventNotice(elem.getId(), now+elem.getServiceTime(), EventType.Departure, 0, j));
 					}
