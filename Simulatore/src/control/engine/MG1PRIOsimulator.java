@@ -106,6 +106,7 @@ public class MG1PRIOsimulator {
 			double rndArr= rndArrivi[i].nextRandom();
 			double rndSer= rndServizio.nextRandom();
 			futureEventList.add(new PriorityEventNotice(Id,rndArr, EventType.Arrival,rndSer , i));
+			totArrival++;
 			priorityQueues.add(i, new PriorityQueue<PriorityQueueElement>());
 			Id++;
 		}
@@ -132,7 +133,6 @@ public class MG1PRIOsimulator {
 				now = e.getOccurrenceTime();
 				if (e.getEventType() == EventType.Arrival) {
 					totUser++;
-					totArrival++;
 					classArrival[e.getPriority()]++;
 					
 					if (totUser == 1) {
@@ -148,7 +148,7 @@ public class MG1PRIOsimulator {
 					if (totArrival < N) {
 						Id++;
 						futureEventList.add(new PriorityEventNotice(Id, now+rndArrivi[e.getPriority()].nextRandom(), EventType.Arrival, rndServizio.nextRandom(), e.getPriority()));
-						
+						totArrival++;
 						
 					}
 				}else if (e.getEventType() == EventType.Departure) {
