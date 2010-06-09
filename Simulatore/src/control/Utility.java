@@ -25,8 +25,8 @@ public class Utility {
 		return tmp/(values.length - 1);
 	}
 	
-	public static double semiAmpiezza(double[] values, int n, double levelOfConfidence){
-		TDistributionImpl td = new TDistributionImpl(n-1);
+	public static double semiAmpiezza(double[] values, double levelOfConfidence){
+		TDistributionImpl td = new TDistributionImpl(values.length-1);
 		double ts = 0;
 		try{
 			ts = td.inverseCumulativeProbability(levelOfConfidence);

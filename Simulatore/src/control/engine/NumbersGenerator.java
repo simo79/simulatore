@@ -74,7 +74,7 @@ public class NumbersGenerator {
 				}
 				fileContent[k][0]=levelOfConfidence;
 				fileContent[k][1]=Utility.mediaCamp(result);
-				fileContent[k][2]=Utility.semiAmpiezza(result, N, levelOfConfidence);
+				fileContent[k][2]=Utility.semiAmpiezza(result, levelOfConfidence);
 				
 				levelOfConfidence+=stepConfidence;
 				result = new double[N];
@@ -94,7 +94,7 @@ public class NumbersGenerator {
 				}
 				fileContent[k][0]=N;
 				fileContent[k][1]=Utility.mediaCamp(result);
-				fileContent[k][2]=Utility.semiAmpiezza(result, N, levelOfConfidence);
+				fileContent[k][2]=Utility.semiAmpiezza(result, levelOfConfidence);
 				
 				N+=stepN;
 				result = new double[N];

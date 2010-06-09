@@ -56,7 +56,7 @@ public class SimulatorLauncher {
 		while(rho<1){
 			double[] results = new MG1simulator(rho, typeOfService, par, nSim, N).run();
 			double media = Utility.mediaCamp(results);
-			double semiAmp= Utility.semiAmpiezza(results, nSim, levelOfConfidence);
+			double semiAmp= Utility.semiAmpiezza(results, levelOfConfidence);
 			logFrm.log("rho: "+rho+"media: "+media+" semi_amp: "+semiAmp);
 			log[i][0]= rho;
 			log[i][1]=media;
@@ -100,14 +100,14 @@ public class SimulatorLauncher {
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial);
-						double semi = Utility.semiAmpiezza(partial, nSim, 0.95);
+						double semi = Utility.semiAmpiezza(partial, 0.95);
 						//System.out.print(" "+media);
 						log[i][k+1]= media;
 						log[i][k+3]= semi;
 						
 					}
 					System.out.println();
-					//logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]);
+					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
@@ -137,13 +137,13 @@ public class SimulatorLauncher {
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
-						double semi = Utility.semiAmpiezza(partial, nSim, 0.95);
+						double semi = Utility.semiAmpiezza(partial, 0.95);
 						//System.out.print(" "+media);
 						log[i][k+1]= media;
 						log[i][k+4]= semi;
 						
 					}
-					//logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
+					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
@@ -173,13 +173,13 @@ public class SimulatorLauncher {
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
-						double semi = Utility.semiAmpiezza(partial, nSim, 0.95);
+						double semi = Utility.semiAmpiezza(partial, 0.95);
 						//System.out.print(" "+media);
 						log[i][k+1]= media;
 						log[i][k+4]= semi;
 						
 					}
-					//logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
+					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
@@ -209,13 +209,13 @@ public class SimulatorLauncher {
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
-						double semi = Utility.semiAmpiezza(partial, nSim, 0.95);
+						double semi = Utility.semiAmpiezza(partial, 0.95);
 						//System.out.print(" "+media);
 						log[i][k+1]= media;
 						log[i][k+4]= semi;
 						
 					}
-					//logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
+					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;

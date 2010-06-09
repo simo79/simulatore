@@ -57,7 +57,7 @@ public class TrafficGenerator {
 			j++;
 		}
 		logFrm.log("E[K(T)]: "+Utility.mediaCamp(result));
-		logFrm.log("Confidenza: "+Utility.semiAmpiezza(result, nSim, confidenceLevel));
+		logFrm.log("Confidenza: "+Utility.semiAmpiezza(result, confidenceLevel));
 		logFrm.log("IDC(T): "+Utility.indiceDisp(result));	
 		//Utility.createCSVFile("log", null, rnd.getLog());
 	}
