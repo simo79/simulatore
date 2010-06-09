@@ -109,9 +109,10 @@ public class MG1PRIOsimulator {
 			priorityQueues.add(i, new PriorityQueue<PriorityQueueElement>());
 			Id++;
 		}
+		/*
 		Object[] tmp = futureEventList.toArray();
 		for(int j=0; j<futureEventList.size();j++)
-			System.out.println((PriorityEventNotice)tmp[j]);
+			System.out.println((PriorityEventNotice)tmp[j]);*/
 		free=0.0;
 		now=0.0;
 		
@@ -124,7 +125,7 @@ public class MG1PRIOsimulator {
 		int step=0;
 		double [][] results = new double[nSim][nClasses];
 		while (step<nSim){
-			System.out.println("simulazione: "+step);
+			//System.out.println("simulazione: "+step);
 			inizializza();
 			while (totDeparture < N) {
 				PriorityEventNotice e = futureEventList.poll();
@@ -166,11 +167,11 @@ public class MG1PRIOsimulator {
 				
 			}
 			for (int j = 0; j < nClasses; j++){
-				
+				/*
 					System.out.print(""+wait[j]);
 					System.out.print(" "+classDeparture[j]);
 					System.out.println(" ");
-				
+				*/
 				results[step][j] = wait[j]/classDeparture[j];
 			}
 			step++;
