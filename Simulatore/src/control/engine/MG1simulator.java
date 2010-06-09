@@ -20,6 +20,7 @@ public class MG1simulator {
 	
 	private double lambda;
 
+
 	private int tries;
 	private int max_users;
 	
