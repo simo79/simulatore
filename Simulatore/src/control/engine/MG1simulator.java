@@ -1,7 +1,6 @@
 package control.engine;
 
-import java.util.concurrent.ConcurrentSkipListSet;
-
+import java.util.PriorityQueue;
 
 import model.DistributionType;
 import model.EventNotice;
@@ -11,7 +10,7 @@ import model.enumerators.EventType;
 public class MG1simulator {
 	
 	
-	private ConcurrentSkipListSet<EventNotice> futureEventList;
+	private PriorityQueue<EventNotice> futureEventList;
 
 	private int totArrival;
 	private int totDeparture;
@@ -29,7 +28,7 @@ public class MG1simulator {
 	
 	
 	public MG1simulator(double rho, DistributionType serv, double[] par,int tries, int users){
-		futureEventList = new ConcurrentSkipListSet<EventNotice>();
+		futureEventList = new PriorityQueue<EventNotice>();
 		this.lambda= rho / par[0];
 		rndServizio = new RandomGenerator(serv,par);
 		rndArrivi = new RandomGenerator(DistributionType.Exponential, new double[]{lambda});
@@ -61,7 +60,7 @@ public class MG1simulator {
 			double w=0;
 			initialize();
 			while (totDeparture < max_users) {
-				EventNotice nextEvent = futureEventList.pollFirst();
+				EventNotice nextEvent = futureEventList.poll();
 				//System.out.println(nextEvent);
 				now = nextEvent.getOccurrenceTime();
 				if(nextEvent.getEventType() == EventType.Arrival){
