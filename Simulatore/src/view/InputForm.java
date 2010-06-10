@@ -58,7 +58,7 @@ public class InputForm {
 	private JLabel jLtrattino = null;
 	private JLabel jLpasso = null;
 	private JLabel jLvalVicolato = null;
-	private JLabel jLmu = null;
+	private JLabel jLrho = null;
 	
 	private JTextField jTFfrequenza = null;
 	private JTextField jTFalpha = null;
@@ -73,7 +73,7 @@ public class InputForm {
 	private JTextField jTFmaxRange = null;
 	private JTextField jTFpasso = null;
 	private JTextField jTFvaloreVicolato = null;
-	private JTextField jTFmu = null;
+	private JTextField jTFrho = null;
 	private JTextField jTFvalues = null;
 	
 	private JButton jBstart = null;
@@ -178,7 +178,7 @@ public class InputForm {
 	private JLabel getJLfrequenza() {
 		if (jLfrequenza == null) {
 			jLfrequenza = new JLabel();
-			jLfrequenza.setText("frequenza:");
+			jLfrequenza.setText("lambda:");
 			jLfrequenza.setBounds(new Rectangle(12, 50, 100, 20));
 		}
 		return jLfrequenza;
@@ -335,13 +335,13 @@ public class InputForm {
 	 * 	
 	 * @return javax.swing.JLabel	
 	 */
-	private JLabel getJLmu() {
-		if (jLmu == null) {
-			jLmu = new JLabel();
-			jLmu.setText("mu:");
-			jLmu.setBounds(new Rectangle(12, 20, 100, 20));
+	private JLabel getJLrho() {
+		if (jLrho == null) {
+			jLrho = new JLabel();
+			jLrho.setText("rho:");
+			jLrho.setBounds(new Rectangle(12, 20, 100, 20));
 		}
-		return jLmu;
+		return jLrho;
 	}
 	//[end]
 	
@@ -351,7 +351,7 @@ public class InputForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	public JTextField getJTFfrequenza() {
+	private JTextField getJTFfrequenza() {
 		if (jTFfrequenza == null) {
 			jTFfrequenza = new JTextField();
 			jTFfrequenza.setText("1");
@@ -365,7 +365,7 @@ public class InputForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	public JTextField getJTFalpha() {
+	private JTextField getJTFalpha() {
 		if (jTFalpha == null) {
 			jTFalpha = new JTextField();
 			jTFalpha.setText("3");
@@ -379,7 +379,7 @@ public class InputForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	public JTextField getJTFrapp() {
+	private JTextField getJTFrapp() {
 		if (jTFrapp == null) {
 			jTFrapp = new JTextField();
 			jTFrapp.setText("10");
@@ -393,7 +393,7 @@ public class InputForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	public JTextField getJTFq10() {
+	private JTextField getJTFq10() {
 		if (jTFg10 == null) {
 			jTFg10 = new JTextField();
 			jTFg10.setText("0.5");
@@ -407,7 +407,7 @@ public class InputForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	public JTextField getJTFq01() {
+	private JTextField getJTFq01() {
 		if (jTFg01 == null) {
 			jTFg01 = new JTextField();
 			jTFg01.setText("0.5");
@@ -522,13 +522,13 @@ public class InputForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	public JTextField getJTFmu() {
-		if (jTFmu == null) {
-			jTFmu = new JTextField();
-			jTFmu.setBounds(new Rectangle(140, 20, 90, 20));
-			jTFmu.setText("1");
+	public JTextField getJTFrho() {
+		if (jTFrho == null) {
+			jTFrho = new JTextField();
+			jTFrho.setBounds(new Rectangle(140, 20, 90, 20));
+			jTFrho.setText("1");
 		}
-		return jTFmu;
+		return jTFrho;
 	}
 	/**
 	 * This method initializes jTFvalues	
@@ -667,8 +667,8 @@ public class InputForm {
 			jPservizio.setLayout(null);
 			jPservizio.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Parametri Servizio", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 			jPservizio.setBounds(new Rectangle(0, 350, 240, 50));
-			jPservizio.add(getJLmu(), null);
-			jPservizio.add(getJTFmu(), null);
+			jPservizio.add(getJLrho(), null);
+			jPservizio.add(getJTFrho(), null);
 		}
 		return jPservizio;
 	}
@@ -820,7 +820,6 @@ public class InputForm {
 					jLvalues.setEnabled(false);
 					jTFvalues.setEnabled(false);
 					jCBdistrSelector.setSelectedItem(DistributionType.Exponential);
-					jTFfrequenza.setText("0.8");
 					jLfrequenza.setText("lambda:");
 					jTFalpha.setText("3");
 					jCBdistrSelector.setEnabled(true);
@@ -840,22 +839,22 @@ public class InputForm {
 					//Impostazione distribuzione
 					jCBdistrSelector.setEditable(true);
 					jCBdistrSelector.removeItem(DistributionType.SPP);
-					//Varie
+					//Disabilito il campo intervallo T
 					jLT.setEnabled(false);
 					jTFT.setEnabled(false);
+					//Abilito campo values ed imposto etichetta
 					jLvalues.setEnabled(true);
+					jLvalues.setText("valori di rho in (0,1):");
 					jTFvalues.setEnabled(true);
-					jLfrequenza.setEnabled(false);
-					jLfrequenza.setText("rho:");
-					jTFfrequenza.setText("(0,1)");
+					
+					jLfrequenza.setText("mu:");
 					jTFalpha.setText("2.5");
-					jTFfrequenza.setEnabled(false);
 					jCBdistrSelector.setEnabled(true);
 					jCBdistrSelector.setEditable(false);
+					jCBdistrSelector.setSelectedItem(DistributionType.Exponential);
 					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione del Servizio", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
-					
 					//Impostazioni Visualizzazione Form/Pannelli
-					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,500));
+					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,445));
 					jPparSimVariabili.setVisible(false);
 					jPhide.setVisible(true);
 				}
@@ -872,9 +871,9 @@ public class InputForm {
 					//Impostazione Caso
 					jCBcase.setSelectedItem(CaseClasses.Caso1);
 					//Varie
-					jLfrequenza.setText("rho:");
-					jTFfrequenza.setText("0.8");
+					jLfrequenza.setText("mu:");
 					jLvalues.setEnabled(true);
+					jLvalues.setText("valori di x in (0,1):");
 					jTFvalues.setEnabled(true);
 					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione del Servizio", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 					//Impostazioni Visualizzazione Form/Pannelli
@@ -887,17 +886,17 @@ public class InputForm {
 				if(perspective != GuiPerspective.Esercitazione5){
 					logForm.reset();
 					perspective = GuiPerspective.Esercitazione5;
-					//Impostazione distribuzione
+					//Impostazioni distribuzione
 					jCBdistrSelector.setSelectedItem(DistributionType.Exponential);
 					jCBdistrSelector.setEnabled(false);
-					//Varie
+					jLfrequenza.setText("mu:");
+					//Disabilito il campo intervallo T
 					jLT.setEnabled(false);
 					jTFT.setEnabled(false);
+					//Disabilito il campo values
 					jLvalues.setEnabled(false);
 					jTFvalues.setEnabled(false);
-					jLfrequenza.setEnabled(true);
-					jLfrequenza.setText("rho:");
-					jTFfrequenza.setText("0.8");
+					//Impostazione titolo pannello distribuzione
 					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione Degli Arrivi", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 					//Impostazioni Visualizzazione Form/Pannelli
 					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,500));
@@ -923,11 +922,8 @@ public class InputForm {
 	public void setDistributionPerspective(DistributionType distr){
 		switch(distr){
 		case Deterministic:
-			if(perspective != GuiPerspective.Esercitazione3){
-				//Nell'esercitazione 3 il rho non deve essere specificato
-				getJLfrequenza().setEnabled(true);
-				getJTFfrequenza().setEnabled(true);
-			}
+			getJLfrequenza().setEnabled(true);
+			getJTFfrequenza().setEnabled(true);
 			getJLalpha().setEnabled(false);
 			getJTFalpha().setEnabled(false);
 			getJLrapporto().setEnabled(false);
@@ -938,11 +934,8 @@ public class InputForm {
 			getJTFq10().setEnabled(false);
 			break;
 		case Exponential:
-			if(perspective != GuiPerspective.Esercitazione3){
-				//Nell'esercitazione 3 il rho non deve essere specificato
-				getJLfrequenza().setEnabled(true);
-				getJTFfrequenza().setEnabled(true);
-			}
+			getJLrho().setEnabled(true);
+			getJTFfrequenza().setEnabled(true);
 			getJLalpha().setEnabled(false);
 			getJTFalpha().setEnabled(false);
 			getJLrapporto().setEnabled(false);
@@ -953,11 +946,8 @@ public class InputForm {
 			getJTFq10().setEnabled(false);
 			break;
 		case Pareto:
-			if(perspective != GuiPerspective.Esercitazione3){
-				//Nell'esercitazione 3 il rho non deve essere specificato
-				getJLfrequenza().setEnabled(true);
-				getJTFfrequenza().setEnabled(true);
-			}
+			getJLfrequenza().setEnabled(true);
+			getJTFfrequenza().setEnabled(true);
 			getJLalpha().setEnabled(true);
 			getJTFalpha().setEnabled(true);
 			getJLrapporto().setEnabled(false);
@@ -968,11 +958,8 @@ public class InputForm {
 			getJTFq10().setEnabled(false);
 			break;
 		case SPP:
-			if(perspective != GuiPerspective.Esercitazione3){
-				//Nell'esercitazione 3 il rho non deve essere specificato
-				getJLfrequenza().setEnabled(true);
-				getJTFfrequenza().setEnabled(true);
-			}
+			getJLfrequenza().setEnabled(true);
+			getJTFfrequenza().setEnabled(true);
 			getJLalpha().setEnabled(false);
 			getJTFalpha().setEnabled(false);
 			getJLrapporto().setEnabled(true);
@@ -1041,33 +1028,29 @@ public class InputForm {
 	public LogForm getLog(){
 		return logForm;
 	}
-	
+	/**
+	 * Resituisce un vettore con i parametri immessi da form della distribuzione selezionata
+	 * Deterministic = {frequenza di servizio}
+	 * Exponential = {frequenza di servizio}
+	 * Pareto = {frequenza di servizio, alpha}
+	 * SPP = {frequenza di servizio, rapporto, q01, q10}
+	 * 
+	 * @return vettore di parametri
+	 */
 	public double[] getDistributionParameters(){
 		double[] param=null;
 		switch ((DistributionType)getJCBdistrSelector().getSelectedItem()){
 			case Deterministic:
 				param = new double[1];
-				try{
-					param[0]=1/Double.parseDouble(getJTFfrequenza().getText());
-				}catch (NumberFormatException  e) {
-					param[0]=Double.NaN;
-				}
+				param[0]=Double.parseDouble(getJTFfrequenza().getText());
 				break;
 			case Exponential:
 				param = new double[1];
-				try{
-					param[0]=Double.parseDouble(getJTFfrequenza().getText());
-				}catch (NumberFormatException  e) {
-					param[0]=Double.NaN;
-				}
+				param[0]=Double.parseDouble(getJTFfrequenza().getText());
 				break;
 			case Pareto:
 				param = new double[2];
-				try{
-					param[0]=Double.parseDouble(getJTFfrequenza().getText());
-				}catch (NumberFormatException e) {
-					param[0]=Double.NaN;
-				}
+				param[0]=Double.parseDouble(getJTFfrequenza().getText());
 				param[1]=Double.parseDouble(getJTFalpha().getText());
 				break;
 			case SPP:

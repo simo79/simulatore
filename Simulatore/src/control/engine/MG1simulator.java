@@ -17,9 +17,6 @@ public class MG1simulator {
 	private int totUser;
 	private int Id;
 	
-	private double lambda;
-
-
 	private int tries;
 	private int max_users;
 	
@@ -27,11 +24,10 @@ public class MG1simulator {
 	private RandomGenerator rndArrivi;
 	
 	
-	public MG1simulator(DistributionType serv, double[] par, int tries, int users){
+	public MG1simulator(double lambdaArr,DistributionType serv, double[] par, int tries, int users){
 		futureEventList = new PriorityQueue<EventNotice>();
-		lambda = par[0];
 		rndServizio = new RandomGenerator(serv,par);
-		rndArrivi = new RandomGenerator(DistributionType.Exponential, new double[]{lambda});
+		rndArrivi = new RandomGenerator(DistributionType.Exponential, new double[]{lambdaArr});
 		this.tries=tries;
 		max_users=users;
 	}

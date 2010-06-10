@@ -53,11 +53,10 @@ public class SimulatorThread extends Thread {
 			int nSim = Integer.parseInt(form.getJTFnumSim().getText());
 			int values = Integer.parseInt(form.getJTFvalues().getText()); 
 			double confidenceLevel = Double.parseDouble(form.getJTFconfidenceLevel().getText());
-			double mu= Double.parseDouble(form.getJTFmu().getText());
 			DistributionType type=(DistributionType)form.getJCBdistrSelector().getSelectedItem();
 			double[] param = form.getDistributionParameters();
 			//Lancio la simulazione
-			SimulatorLauncher.lauchSimulation3(N,nSim,confidenceLevel,values,type,param,mu,form.getLog());
+			SimulatorLauncher.lauchSimulation3(N,nSim,confidenceLevel,values,type,param,form.getLog());
 		}
 		if(form.getSelectedPerspective()==GuiPerspective.Esercitazione4){
 			form.logEse4Legenda();
@@ -67,9 +66,9 @@ public class SimulatorThread extends Thread {
 			int nSim = Integer.parseInt(form.getJTFnumSim().getText());
 			int xValues = Integer.parseInt(form.getJTFvalues().getText());  
 			double[] param = form.getDistributionParameters();
-			double mu= Double.parseDouble(form.getJTFmu().getText());
+			double rho= Double.parseDouble(form.getJTFrho().getText());
 			//Lancio la simulazione
-			SimulatorLauncher.lauchSimulation4(N,nSim,caseC,xValues,param[0],mu,form.getLog());
+			SimulatorLauncher.lauchSimulation4(N,nSim,caseC,xValues,rho,param[0],form.getLog());
 		}
 		if(form.getSelectedPerspective()==GuiPerspective.Esercitazione4){
 			
