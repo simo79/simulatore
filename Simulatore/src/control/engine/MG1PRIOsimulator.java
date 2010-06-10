@@ -1,7 +1,6 @@
 package control.engine;
 
 import java.util.Vector;
-import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.PriorityQueue;
 
 import view.LogForm;
@@ -14,11 +13,7 @@ import model.enumerators.EventType;
 
 public class MG1PRIOsimulator {
 	
-	//private ConcurrentSkipListSet<PriorityEventNotice> futureEventList;
-	
 	private PriorityQueue<PriorityEventNotice> futureEventList;
-	
-	//private Vector<ConcurrentSkipListSet<PriorityQueueElement>> priorityQueues;
 	
 	Vector<PriorityQueue<PriorityQueueElement>> priorityQueues;
 	
