@@ -13,9 +13,8 @@ public class SimulatorThread extends Thread {
 	}
 	@Override
 	public void run() {
+		form.getLog().reset();
 		if(form.getSelectedPerspective()==GuiPerspective.Esercitazione1){
-			//Recupero i parametri dalla form
-			//int nSim = Integer.parseInt(form.getJTFnumSim().getText());
 			switch(form.getCostraintValue()){
 				case VincolaConfidenza:
 					//Devo variare N
@@ -61,6 +60,7 @@ public class SimulatorThread extends Thread {
 			SimulatorLauncher.lauchSimulation3(N,nSim,confidenceLevel,values,type,param,mu,form.getLog());
 		}
 		if(form.getSelectedPerspective()==GuiPerspective.Esercitazione4){
+			form.logEse4Legenda();
 			CaseClasses caseC=(CaseClasses)form.getJCBcase().getSelectedItem();
 			//Recupero i parametri dalla form
 			int N = Integer.parseInt(form.getJTFN().getText());
@@ -71,6 +71,7 @@ public class SimulatorThread extends Thread {
 			//Lancio la simulazione
 			SimulatorLauncher.lauchSimulation4(N,nSim,caseC,xValues,param[0],mu,form.getLog());
 		}
+		form.getLog().refresh();
 	}
 
 }
