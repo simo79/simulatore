@@ -138,7 +138,7 @@ public class MM1SJNsimulator {
 						int j = 0;
 						SJNPriorityQueueElement elem = priorityQueue.poll();
 						totWait = totWait + (now - elem.getOccurrenceTime());
-						wait[calcClassPriority(e.getServiceTime())] += (now -elem.getOccurrenceTime());
+						wait[calcClassPriority(elem.getServiceTime())] += (now -elem.getOccurrenceTime());
 						futureEventList.add(new EventNotice(elem.getId(), now+elem.getServiceTime(), EventType.Departure, 0));
 					}
 				}
@@ -147,9 +147,9 @@ public class MM1SJNsimulator {
 			for(int i=0; i<nClasses; i++){
 				
 				if (classArrival[i]==0)
-					results[nSim][i] = 0.0;
+					results[step][i] = 0.0;
 				else
-					results[nSim][i]=wait[i]/classArrival[i];
+					results[step][i]=wait[i]/classArrival[i];
 			}
 			
 			step++;
