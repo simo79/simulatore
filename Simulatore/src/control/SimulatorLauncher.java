@@ -16,34 +16,28 @@ public class SimulatorLauncher {
 	 * @param form
 	 */
 	public static void lauchSimulation1_1(int minN, int maxN, int passoN, double confidenceLevel, LogForm logFrm){
-		if(logFrm!=null){
-			logFrm.reset();
-			new NumbersGenerator(minN, maxN, passoN, confidenceLevel,logFrm).run();
-		}else
-			new NumbersGenerator(minN, maxN, passoN ,confidenceLevel).run();
+		logFrm.reset();
+		double[][] fileContent = new NumbersGenerator(minN, maxN, passoN, confidenceLevel,logFrm).run();
+		Utility.createCSVFile("GenNCasuali",null, fileContent);
 		
 	}
 	/**
 	 * Simulazione esercitazione1 al variare del livello di confidenza
 	 */
 	public static void lauchSimulation1_2(int N, double minValueConfidenza,double maxValueConfidenza,double passoConfidenza , LogForm logFrm){
-		if(logFrm!=null){
-			logFrm.reset();
-			new NumbersGenerator(N,minValueConfidenza,maxValueConfidenza, passoConfidenza,logFrm).run();
-		}else
-			new NumbersGenerator(N,minValueConfidenza,maxValueConfidenza, passoConfidenza).run();
-		
+		logFrm.reset();
+		double[][] fileContent = new NumbersGenerator(N,minValueConfidenza,maxValueConfidenza, passoConfidenza,logFrm).run();
+		Utility.createCSVFile("GenNCasuali",null, fileContent);
+		logFrm.refresh();
 	}
 	/**
 	 * 
 	 * @param form
 	 */
 	public static void lauchSimulation2(int N, int nSim, double confidenceLevel, double T, DistributionType type, double[] param, LogForm logFrm){
-		if(logFrm!=null){
-			logFrm.reset();
-			new TrafficGenerator(N,nSim,confidenceLevel,T,type, param,logFrm).run();
-		}else
-			new TrafficGenerator(N,nSim,confidenceLevel,T,type, param).run();
+		logFrm.reset();
+		new TrafficGenerator(N,nSim,confidenceLevel,T,type, param,logFrm).run();
+		logFrm.refresh();
 	}
 	/**
 	 * 
