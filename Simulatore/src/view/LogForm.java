@@ -16,7 +16,7 @@ import javax.swing.BoxLayout;
 
 public class LogForm {
 
-	private JFrame jFlogForm = null; 
+	private JFrame jFlogForm = null;  //  @jve:decl-index=0:visual-constraint="10,98"
 	private JPanel jCPmain = null;
 	private JScrollPane jSPlog = null;  
 	private JList jLlog = null;
@@ -39,7 +39,7 @@ public class LogForm {
 	private JFrame getJFlogForm() {
 		if (jFlogForm == null) {
 			jFlogForm = new JFrame();
-			jFlogForm.setSize(new Dimension(356, 443));
+			jFlogForm.setSize(new Dimension(595, 443));
 			jFlogForm.setTitle("Log");
 			jFlogForm.setContentPane(getJCPmain());
 			jFlogForm.addWindowListener(new JFwindowListener());
