@@ -71,6 +71,9 @@ public class SimulatorThread extends Thread {
 			//Lancio la simulazione
 			SimulatorLauncher.lauchSimulation4(N,nSim,caseC,xValues,param[0],mu,form.getLog());
 		}
+		if(form.getSelectedPerspective()==GuiPerspective.Esercitazione4){
+			
+		}
 		form.getLog().refresh();
 	}
 
