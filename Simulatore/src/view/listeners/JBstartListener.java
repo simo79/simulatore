@@ -16,6 +16,8 @@ public class JBstartListener implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+			form.getLog().reset();
+			form.getLog().refresh();
 			new SimulatorThread(form).start();
 	}
 
