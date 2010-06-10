@@ -86,7 +86,6 @@ public class SimulatorLauncher {
 			i=0;
 			logFrm.getJPBstatus().setMaximum(xVal);
 			step=1.0/(xVal+1);
-			System.out.println(" "+step);
 			x=step;
 			try{
 				//while (x<1.0){
@@ -101,12 +100,10 @@ public class SimulatorLauncher {
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial);
 						double semi = Utility.semiAmpiezza(partial, 0.95);
-						//System.out.print(" "+media);
 						log[i][k+1]= media;
 						log[i][k+3]= semi;
 						
 					}
-					System.out.println();
 					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
