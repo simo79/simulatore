@@ -19,7 +19,8 @@ public class SimulatorLauncher {
 		logFrm.reset();
 		double[][] fileContent = new NumbersGenerator(minN, maxN, passoN, confidenceLevel,logFrm).run();
 		Utility.createCSVFile("GenNCasuali",null, fileContent);
-		
+		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file GenNCasuali.csv");
+		logFrm.refresh();
 	}
 	/**
 	 * Simulazione esercitazione1 al variare del livello di confidenza
@@ -28,6 +29,7 @@ public class SimulatorLauncher {
 		logFrm.reset();
 		double[][] fileContent = new NumbersGenerator(N,minValueConfidenza,maxValueConfidenza, passoConfidenza,logFrm).run();
 		Utility.createCSVFile("GenNCasuali",null, fileContent);
+		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file GenNCasuali.csv");
 		logFrm.refresh();
 	}
 	/**
