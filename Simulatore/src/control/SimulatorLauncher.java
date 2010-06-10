@@ -71,8 +71,8 @@ public class SimulatorLauncher {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file MG1.csv");
-		Utility.createCSVFile("MG1", null, log);
+		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file MG1_"+typeOfService.toString()+".csv");
+		Utility.createCSVFile("MG1_"+typeOfService.toString(), null, log);
 	}
 	/**
 	 * 
