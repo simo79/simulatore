@@ -225,6 +225,6 @@ public class SimulatorLauncher {
 		}
 		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file MM1PRIO.csv");
 		Utility.createCSVFile("MM1PRIO", null, log);
-		logFrm.refresh();
+		
 	}
 }
