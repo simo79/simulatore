@@ -40,7 +40,7 @@ public class MG1PRIOsimulator {
 	private RandomGenerator[] rndArrivi;
 	
 	private LogForm logFrm;
-	private double[] rhos;
+
 	/**
 	 * 
 	 * @param N
@@ -50,7 +50,6 @@ public class MG1PRIOsimulator {
 	 * @param nSim
 	 */
 	public MG1PRIOsimulator(int N, int nClasses, double[] rho, double mu, int nSim){
-		this.rhos=rho;
 		this.nSim = nSim;
 		this.nClasses=nClasses;
 		this.N=N;
