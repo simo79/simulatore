@@ -27,9 +27,9 @@ public class MG1simulator {
 	private RandomGenerator rndArrivi;
 	
 	
-	public MG1simulator(double rho, DistributionType serv, double[] par,int tries, int users){
+	public MG1simulator(DistributionType serv, double[] par, int tries, int users){
 		futureEventList = new PriorityQueue<EventNotice>();
-		this.lambda= rho / par[0];
+		lambda = par[0];
 		rndServizio = new RandomGenerator(serv,par);
 		rndArrivi = new RandomGenerator(DistributionType.Exponential, new double[]{lambda});
 		this.tries=tries;
