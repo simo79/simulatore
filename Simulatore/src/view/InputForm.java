@@ -807,6 +807,8 @@ public class InputForm {
 					jTFT.setEnabled(true);
 					jLvalues.setEnabled(false);
 					jTFvalues.setEnabled(false);
+					jLfrequenza.setEnabled(true);
+					jTFfrequenza.setEditable(true);
 					jLfrequenza.setText("frequenza:");
 					jTFalpha.setText("3");
 					jCBdistrSelector.setEnabled(true);
@@ -832,6 +834,7 @@ public class InputForm {
 					jLvalues.setEnabled(true);
 					jTFvalues.setEnabled(true);
 					jLfrequenza.setEnabled(false);
+					jLfrequenza.setText("rho:");
 					jTFfrequenza.setText("(0,1)");
 					jTFalpha.setText("2.5");
 					jTFfrequenza.setEnabled(false);
@@ -1009,15 +1012,27 @@ public class InputForm {
 		switch ((DistributionType)getJCBdistrSelector().getSelectedItem()){
 			case Deterministic:
 				param = new double[1];
-				param[0]=1/Double.parseDouble(getJTFfrequenza().getText());
+				try{
+					param[0]=1/Double.parseDouble(getJTFfrequenza().getText());
+				}catch (NumberFormatException  e) {
+					param[0]=Double.NaN;
+				}
 				break;
 			case Exponential:
 				param = new double[1];
-				param[0]=Double.parseDouble(getJTFfrequenza().getText());
+				try{
+					param[0]=Double.parseDouble(getJTFfrequenza().getText());
+				}catch (NumberFormatException  e) {
+					param[0]=Double.NaN;
+				}
 				break;
 			case Pareto:
 				param = new double[2];
-				param[0]=Double.parseDouble(getJTFfrequenza().getText());
+				try{
+					param[0]=Double.parseDouble(getJTFfrequenza().getText());
+				}catch (NumberFormatException e) {
+					param[0]=Double.NaN;
+				}
 				param[1]=Double.parseDouble(getJTFalpha().getText());
 				break;
 			case SPP:
