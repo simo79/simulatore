@@ -48,22 +48,30 @@ public class SimulatorLauncher {
 	 * @param form
 	 */
 	public static void lauchSimulation3(int N, int nSim, double levelOfConfidence,int values, DistributionType typeOfService, double[] par,double mu,LogForm logFrm){
-		double step = 1.0/values;
+		double step = 1.0/(values+1);
 		double rho=step;
 		double[][] log = new double[values][3];
 		int i=0;
 		logFrm.getJPBstatus().setMaximum(values);
-		while(rho<1){
-			double[] results = new MG1simulator(rho, typeOfService, par, nSim, N).run();
-			double media = Utility.mediaCamp(results);
-			double semiAmp= Utility.semiAmpiezza(results, levelOfConfidence);
-			logFrm.log("rho: "+rho+"media: "+media+" semi_amp: "+semiAmp);
-			log[i][0]= rho;
-			log[i][1]=media;
-			log[i][2]=semiAmp;
-			i++;
-			rho+=step;
-			logFrm.getJPBstatus().setValue(i);
+		DecimalFormat f = new DecimalFormat("#####.########");
+		
+		try{
+			while(i<values){
+				par[0]=rho/mu;//Rho è il primo valore della lista dei parametri
+				double[] results = new MG1simulator(typeOfService, par, nSim, N).run();
+				double media = Utility.mediaCamp(results);
+				double semiAmp= Utility.semiAmpiezza(results, levelOfConfidence);
+				logFrm.log("rho: "+par[0]+" media: "+media+" semi_amp: "+semiAmp);
+				log[i][0]= par[0];
+				log[i][1]=media;
+				log[i][2]=semiAmp;
+				i++;
+				rho+=step;
+				rho=f.parse(f.format(rho)).doubleValue();
+				logFrm.getJPBstatus().setValue(i);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file MG1.csv");
 		Utility.createCSVFile("MG1", null, log);
@@ -79,6 +87,7 @@ public class SimulatorLauncher {
 		double step;
 		double x;
 		DecimalFormat f = new DecimalFormat("#####.########");
+		
 		switch(caseC){
 		case Caso1:
 			rhos = new double[2];
