@@ -16,9 +16,9 @@ import javax.swing.BoxLayout;
 
 public class LogForm {
 
-	private JFrame jFlogForm = null;  //  @jve:decl-index=0:visual-constraint="157,21"
+	private JFrame jFlogForm = null; 
 	private JPanel jCPmain = null;
-	private JScrollPane jSPlog = null;  //  @jve:decl-index=0:visual-constraint="766,65"
+	private JScrollPane jSPlog = null;  
 	private JList jLlog = null;
 	
 	private DefaultListModel model;
@@ -29,8 +29,10 @@ public class LogForm {
 		getJFlogForm().setVisible(true);
 		jFlogForm.setLocation(600, 300);
 	}
+	
+	//[start] Elementi grafici
 	/**
-	 * This method initializes jFlogForm	
+	 * Metodo che inizializza e restituisce la form principale 	
 	 * 	
 	 * @return javax.swing.JFrame	
 	 */
@@ -47,7 +49,7 @@ public class LogForm {
 	}
 
 	/**
-	 * This method initializes jCPmain	
+	 * Metodo che inizializza e restituisce il ContenPane 	
 	 * 	
 	 * @return javax.swing.JPanel	
 	 */
@@ -62,7 +64,7 @@ public class LogForm {
 	}
 
 	/**
-	 * This method initializes jSPlog	
+	 * Metodo che inizializza e restituisce lo scrollpane 	
 	 * 	
 	 * @return javax.swing.JScrollPane	
 	 */
@@ -76,24 +78,15 @@ public class LogForm {
 	}
 
 	/**
-	 * This method initializes jLlog	
+	 * Metodo che inizializza e restituisce la Jlist 	
 	 * 	
 	 * @return javax.swing.JList	
 	 */
 	private JList getJLlog() {
 		if (jLlog == null) {
 			jLlog = new JList();
-			jLlog.setModel(model);
 		}
 		return jLlog;
-	}
-	
-	public void log(String entry){
-		model.addElement(entry);
-	}
-	
-	public void reset(){
-		model.clear();
 	}
 	/**
 	 * This method initializes jPBstatus	
@@ -103,16 +96,25 @@ public class LogForm {
 	public JProgressBar getJPBstatus() {
 		if (jPBstatus == null) {
 			jPBstatus = new JProgressBar();
-			jPBstatus.setMaximum(200);
-			jPBstatus.setName("jPBstatus");
 		}
 		return jPBstatus;
 	}
+	//[end]
+	
+	public void log(String entry){
+		model.addElement(entry);
+	}
+	
+	public void reset(){
+		model = new DefaultListModel();
+	}
 	
 	public void refresh(){
-
-		getJLlog().repaint();
 		getJLlog().setModel(model);
 	}
+	
+	
+	
+	
 }
 
