@@ -1,6 +1,6 @@
 package control.engine;
 
-import java.util.Random;
+import org.apache.commons.math.random.MersenneTwister;
 
 import view.LogForm;
 
@@ -62,7 +62,7 @@ public class NumbersGenerator {
 	}
 	
 	public void run(){
-		Random rnd = new Random();
+		MersenneTwister rnd = new MersenneTwister();
 		if(levelOfConfidence == 0.0){
 			levelOfConfidence = minConfidence;
 			double[] result = new double[N];
