@@ -3,10 +3,17 @@ package control;
 import java.text.DecimalFormat;
 
 import control.engine.MG1PRIOsimulator;
-
+/**
+ * classe utilizzata per dei test sulle prime simulazioni.
+ * 
+ * @author Matteo Desanti, Elia Maldini, Alessandro Montalti
+ *
+ */
 public class Test {
 
 	/**
+	 * avvia il test.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {

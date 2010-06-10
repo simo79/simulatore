@@ -9,11 +9,23 @@ import control.engine.MG1PRIOsimulator;
 import control.engine.MG1simulator;
 import control.engine.NumbersGenerator;
 import control.engine.TrafficGenerator;
-
+/**
+ * 
+ * La classe mette a disposizione i metodi per l'avvio delle diverse simulazioni richieste.
+ * 
+ * @author Matteo Desanti, Elia Maldini, Alessandro Montalti
+ *
+ */
 public class SimulatorLauncher {
 	/**
-	 * Simulazione esercitazione1 al variare di N
-	 * @param form
+	 * 
+	 * Avvio esercitazione 1 al variare della quantitˆ di numeri da generare
+	 * 
+	 * @param minN valore minimo di N da cui parte la simulazione
+	 * @param maxN valore massimo di N a cui la simulazione deve concludersi
+	 * @param passoN valore di incremento di N tra una passo di simulazione e l'altro
+	 * @param confidenceLevel livello di confidenza da usare per il calcolo finale dell'indice di confidenza
+	 * @param logFrm riferimento alla finestra di log
 	 */
 	public static void lauchSimulation1_1(int minN, int maxN, int passoN, double confidenceLevel, LogForm logFrm){
 		logFrm.reset();
@@ -23,7 +35,13 @@ public class SimulatorLauncher {
 		logFrm.refresh();
 	}
 	/**
-	 * Simulazione esercitazione1 al variare del livello di confidenza
+	 * Avvio esercitazione 1 al variare del livello di confidenza
+	 * 
+	 * @param N quantitˆ di numeri pseudo random da generare ad ogni passo di simulazione
+	 * @param minValueConfidenza valore minimo del livello di confidenza da cui parte la simulazione
+	 * @param maxValueConfidenza valore massimo del livello di confidenza a cui la simulazione si ferma
+	 * @param passoConfidenza valore di incremento del livello di confidenza tra un passo di simulazione e l'altro
+	 * @param logFrm riferimento alla finestra di log
 	 */
 	public static void lauchSimulation1_2(int N, double minValueConfidenza,double maxValueConfidenza,double passoConfidenza , LogForm logFrm){
 		logFrm.reset();
@@ -33,8 +51,15 @@ public class SimulatorLauncher {
 		logFrm.refresh();
 	}
 	/**
+	 * Avvio esercitazione 2 per la generazione di traffici di vario tipo e calcolo del relatico IDC.
 	 * 
-	 * @param form
+	 * @param N numero di arrivi da generare
+	 * @param nSim numero di passi di simulazione totali	
+	 * @param confidenceLevel livello di confidenza da utilizzare
+	 * @param T tempo su cui calcolare l'IDC
+	 * @param type tipo di distribuzione degli arrivi (esponenziale, deterministico, pareto, SPP)
+	 * @param param parametri per il tipo di distribuzione suddetto, si veda la javadoc del TrafficGenerator
+	 * @param logFrm riferimento alla finestra di log
 	 */
 	public static void lauchSimulation2(int N, int nSim, double confidenceLevel, double T, DistributionType type, double[] param, LogForm logFrm){
 		logFrm.reset();
@@ -42,9 +67,17 @@ public class SimulatorLauncher {
 		logFrm.refresh();
 	}
 	/**
+	 * Avvio esercitazione 3 per la realizzazione di un sistema MG1.
 	 * 
-	 * @param form
+	 * @param N numero degli arrivi totali da generare
+	 * @param nSim numero di passi di simulazione per ogni valore di ingresso di rho
+	 * @param levelOfConfidence livello di confidenza da utilizzare
+	 * @param values numero di valori dell'ascissa in cui l'intervallo (0,1) di rho viene suddiviso. Determina l'incremento di rho per ogni simulazione.
+	 * @param typeOfService tipo di distribuzione del servizio (esponenziale, deterministico, pareto)
+	 * @param par parametri per il tipo di distribuzione suddetto, si veda la javadoc del MG1Simulator
+	 * @param logFrm riferimento alla finestra di log
 	 */
+	 
 	public static void lauchSimulation3(int N, int nSim, double levelOfConfidence,int values, DistributionType typeOfService, double[] par,LogForm logFrm){
 		double step = 1.0/(values+1);
 		double rho=step;
@@ -76,7 +109,15 @@ public class SimulatorLauncher {
 	}
 	/**
 	 * 
-	 * @param form
+	 * Avvio esercitazione 4 per la realizzazione di un sistema MM1 con prioritˆ non preemptive.
+	 *
+	 * @param N numero degli arrivi totali da generare
+	 * @param nSim numero di passi di simulazione per ogni valore di ingresso di x
+	 * @param caseC tipologia di caso da studiare, determina il numero delle classi di prioritˆ e per ciascuna di esse il relativo rho
+	 * @param xVal numero di valori dell'ascissa in cui l'intervallo (0,1) di x viene suddiviso. Determina l'incremento di x per ogni simulazione.
+	 * @param rho valore di rho totale, determina con x il valore dei singoli rho delle classi di prioritˆ
+	 * @param mu frequenza del servizio
+	 * @param logFrm riferimento alla finestra di log
 	 */
 	public static void lauchSimulation4(int N, int nSim, CaseClasses caseC,int xVal, double rho, double mu, LogForm logFrm){
 		double[][] log = null;
@@ -233,6 +274,7 @@ public class SimulatorLauncher {
 		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file MM1PRIO.csv");
 		Utility.createCSVFile("MM1PRIO", null, log);
 	}
+	
 	/*
 	public static void lauchSimulation5(int N, int nSim,int ncl CaseClasses caseC,int xVal, double rho, double mu, LogForm logFrm){
 		int nSim = 50;
