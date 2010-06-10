@@ -7,9 +7,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JComboBox;
-import model.DistributionType;
 import model.enumerators.CaseClasses;
 import model.enumerators.CostraintValue;
+import model.enumerators.DistributionType;
 import model.enumerators.GuiPerspective;
 
 import javax.swing.JLabel;

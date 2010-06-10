@@ -2,8 +2,8 @@ package view.listeners;
 
 import control.SimulatorLauncher;
 import view.InputForm;
-import model.DistributionType;
 import model.enumerators.CaseClasses;
+import model.enumerators.DistributionType;
 import model.enumerators.GuiPerspective;
 
 public class SimulatorThread extends Thread {

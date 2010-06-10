@@ -5,10 +5,10 @@ import java.util.PriorityQueue;
 
 import view.LogForm;
 
-import model.DistributionType;
 import model.PriorityEventNotice;
 import model.PriorityQueueElement;
 import model.RandomGenerator;
+import model.enumerators.DistributionType;
 import model.enumerators.EventType;
 
 public class MG1PRIOsimulator {

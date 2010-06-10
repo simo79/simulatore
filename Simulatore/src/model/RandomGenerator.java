@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
+import model.enumerators.DistributionType;
+
 import org.apache.commons.math.random.MersenneTwister;
 
 public class RandomGenerator {

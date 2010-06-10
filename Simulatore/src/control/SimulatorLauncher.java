@@ -3,8 +3,8 @@ package control;
 import java.text.DecimalFormat;
 
 import view.LogForm;
-import model.DistributionType;
 import model.enumerators.CaseClasses;
+import model.enumerators.DistributionType;
 import control.engine.MG1PRIOsimulator;
 import control.engine.MG1simulator;
 import control.engine.NumbersGenerator;

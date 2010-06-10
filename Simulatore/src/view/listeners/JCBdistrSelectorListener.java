@@ -7,7 +7,7 @@ import javax.swing.JComboBox;
 
 import view.InputForm;
 
-import model.DistributionType;
+import model.enumerators.DistributionType;
  
 public class JCBdistrSelectorListener implements ActionListener {
 	private InputForm form;

@@ -2,9 +2,9 @@ package control.engine;
 
 import java.util.PriorityQueue;
 
-import model.DistributionType;
 import model.EventNotice;
 import model.RandomGenerator;
+import model.enumerators.DistributionType;
 import model.enumerators.EventType;
 
 public class MG1simulator {

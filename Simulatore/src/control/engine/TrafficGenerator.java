@@ -2,8 +2,8 @@ package control.engine;
 
 import view.LogForm;
 import control.Utility;
-import model.DistributionType;
 import model.RandomGenerator;
+import model.enumerators.DistributionType;
 
 public class TrafficGenerator {
 	private int nSim;
