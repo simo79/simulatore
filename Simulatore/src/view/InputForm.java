@@ -852,7 +852,7 @@ public class InputForm {
 					jTFfrequenza.setEnabled(false);
 					jCBdistrSelector.setEnabled(true);
 					jCBdistrSelector.setEditable(false);
-					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione Degli Arrivi", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
+					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione del Servizio", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 					
 					//Impostazioni Visualizzazione Form/Pannelli
 					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,500));
@@ -876,7 +876,7 @@ public class InputForm {
 					jTFfrequenza.setText("0.8");
 					jLvalues.setEnabled(true);
 					jTFvalues.setEnabled(true);
-					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione Degli Arrivi", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
+					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione del Servizio", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 					//Impostazioni Visualizzazione Form/Pannelli
 					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,535));
 					jPparSimVariabili.setVisible(false);
