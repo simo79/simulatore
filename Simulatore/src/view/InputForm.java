@@ -821,7 +821,7 @@ public class InputForm {
 					jTFvalues.setEnabled(false);
 					jCBdistrSelector.setSelectedItem(DistributionType.Exponential);
 					jTFfrequenza.setText("0.8");
-					jLfrequenza.setText("frequenza:");
+					jLfrequenza.setText("lambda:");
 					jTFalpha.setText("3");
 					jCBdistrSelector.setEnabled(true);
 					jCBdistrSelector.setEditable(false);
