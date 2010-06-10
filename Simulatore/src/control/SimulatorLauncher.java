@@ -21,6 +21,7 @@ public class SimulatorLauncher {
 			new NumbersGenerator(minN, maxN, passoN, confidenceLevel,logFrm).run();
 		}else
 			new NumbersGenerator(minN, maxN, passoN ,confidenceLevel).run();
+		
 	}
 	/**
 	 * Simulazione esercitazione1 al variare del livello di confidenza
@@ -31,6 +32,7 @@ public class SimulatorLauncher {
 			new NumbersGenerator(N,minValueConfidenza,maxValueConfidenza, passoConfidenza,logFrm).run();
 		}else
 			new NumbersGenerator(N,minValueConfidenza,maxValueConfidenza, passoConfidenza).run();
+		
 	}
 	/**
 	 * 
@@ -234,6 +236,26 @@ public class SimulatorLauncher {
 		}
 		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file MM1PRIO.csv");
 		Utility.createCSVFile("MM1PRIO", null, log);
-		
 	}
+	/*
+	public static void lauchSimulation5(int N, int nSim,int ncl CaseClasses caseC,int xVal, double rho, double mu, LogForm logFrm){
+		int nSim = 50;
+
+		double[][] log = new double[ncl][2];
+		double[][] result = new MM1SJNsimulator(1000, 0.8, 1, nSim).run();
+		double[] partial = new double[nSim];
+		double step= 2.0/ncl;
+		double x=step;
+		for(int k=0; k<ncl; k++){
+			log[k][0] = x;
+			for(int j=0; j<nSim; j++)
+				partial[j]=result[j][k];
+			double media = Utility.mediaCamp(partial); 
+			
+			log[k][1]= media;
+			x+=step;
+		}
+		
+		Utility.createCSVFile("SJN", null, log);
+	}*/
 }
