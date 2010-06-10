@@ -17,7 +17,7 @@ public class SimulatorLauncher {
 	 */
 	public static void lauchSimulation1_1(int minN, int maxN, int passoN, double confidenceLevel, LogForm logFrm){
 		if(logFrm!=null){
-			logFrm.resetLog();
+			logFrm.reset();
 			new NumbersGenerator(minN, maxN, passoN, confidenceLevel,logFrm).run();
 		}else
 			new NumbersGenerator(minN, maxN, passoN ,confidenceLevel).run();
@@ -27,7 +27,7 @@ public class SimulatorLauncher {
 	 */
 	public static void lauchSimulation1_2(int N, double minValueConfidenza,double maxValueConfidenza,double passoConfidenza , LogForm logFrm){
 		if(logFrm!=null){
-			logFrm.resetLog();
+			logFrm.reset();
 			new NumbersGenerator(N,minValueConfidenza,maxValueConfidenza, passoConfidenza,logFrm).run();
 		}else
 			new NumbersGenerator(N,minValueConfidenza,maxValueConfidenza, passoConfidenza).run();
@@ -38,7 +38,7 @@ public class SimulatorLauncher {
 	 */
 	public static void lauchSimulation2(int N, int nSim, double confidenceLevel, double T, DistributionType type, double[] param, LogForm logFrm){
 		if(logFrm!=null){
-			logFrm.resetLog();
+			logFrm.reset();
 			new TrafficGenerator(N,nSim,confidenceLevel,T,type, param,logFrm).run();
 		}else
 			new TrafficGenerator(N,nSim,confidenceLevel,T,type, param).run();
