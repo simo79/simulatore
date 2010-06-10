@@ -1,7 +1,7 @@
 package control.engine;
 
 import java.util.Vector;
-import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.PriorityQueue;
 
 import view.LogForm;
 
@@ -13,12 +13,15 @@ import model.enumerators.EventType;
 
 public class MM1SJNsimulator {
 	
-	private ConcurrentSkipListSet<EventNotice> futureEventList;
+	private PriorityQueue<EventNotice> futureEventList;
 	
-	private ConcurrentSkipListSet<SJNPriorityQueueElement> priorityQueue;
+	private PriorityQueue<SJNPriorityQueueElement> priorityQueue;
 	
-	//private int nClasses;
-
+	private int nClasses = 40;
+	private int[] classArrival = new int[nClasses];
+	private int[] classDeparture = new int[nClasses];
+	private double[] wait;
+	
 	private int N;
 	
 	private int totArrival;
@@ -26,15 +29,10 @@ public class MM1SJNsimulator {
 	private int totUser;
 	private int Id;
 	
-	//private int[] classArrival;
-	//private int[] classDeparture;
-	
 	private int nSim;
-	//private int max_users;
 	
 	private double free;
 	private double now;
-	//private double[] wait;
 	private double totWait;
 	
 	private RandomGenerator rndServizio;
@@ -59,18 +57,6 @@ public class MM1SJNsimulator {
 		this.N=N;
 		logFrm=null;
 		
-		//priorityQueue = new ConcurrentSkipListSet<SJNPriorityQueueElement>();
-		//futureEventList = new ConcurrentSkipListSet<EventNotice>();
-		
-		//classArrival = new int[nClasses];
-		//classDeparture = new int[nClasses];
-		//wait = new double[nClasses];
-		
-		/*
-		for(int i=0; i<nClasses; i++){
-			rndArrivi[i]=new RandomGenerator(DistributionType.Exponential, new double[]{rho[i]/mu});
-			priorityQueues.add(i, new ConcurrentSkipListSet<PriorityQueueElement>());
-		}*/
 	}
 	/**
 	 * 
@@ -91,29 +77,22 @@ public class MM1SJNsimulator {
 	private void inizializza() {
 		totArrival=0;
 		totDeparture=0;
+		
+		wait = new double[nClasses];
+		for(int i=0; i<nClasses; i++){
+			wait[i]=0.0;
+			classArrival[i]=0;
+			classDeparture[i]=0;
+		}
+		
 		totUser=0;
 		Id=0;
 		rndServizio = new RandomGenerator(DistributionType.Exponential, new double[]{this.mu});
 		rndArrivi = new RandomGenerator(DistributionType.Exponential, new double[]{this.rho/this.mu});
-		priorityQueue = new ConcurrentSkipListSet<SJNPriorityQueueElement>();
-		futureEventList = new ConcurrentSkipListSet<EventNotice>();
-		
+		priorityQueue = new PriorityQueue<SJNPriorityQueueElement>();
+		futureEventList = new PriorityQueue<EventNotice>();
 		futureEventList.add(new EventNotice(Id,rndArrivi.nextRandom(), EventType.Arrival,rndServizio.nextRandom()));
-		/*
-		for(int i=0;i<nClasses;i++){
-			classArrival[i]=0;
-			classDeparture[i]=0;
-			wait[i]=0.0;
-			double rndArr= rndArrivi[i].nextRandom();
-			double rndSer= rndServizio.nextRandom();
-			futureEventList.add(new PriorityEventNotice(Id,rndArr, EventType.Arrival,rndSer , i));
-			priorityQueues.add(i, new ConcurrentSkipListSet<PriorityQueueElement>());
-			Id++;
-		}
 		
-		Object[] tmp = futureEventList.toArray();
-		for(int j=0; j<futureEventList.size();j++)
-			System.out.println((PriorityEventNotice)tmp[j]);*/
 		free=0.0;
 		now=0.0;
 		
@@ -122,20 +101,19 @@ public class MM1SJNsimulator {
 	 * 
 	 * @return
 	 */
-	public double[] run(){
+	public double[][] run(){
 		int step=0;
-		double [] results = new double[nSim];
-		//double [][] results = new double[nSim][nClasses];
-		while (step<nSim){
-			//System.out.println("simulazione: "+step);
+		double [][] results = new double[nSim][nClasses];
+		
+		while (step<nSim){	
 			inizializza();
 			while (totDeparture < N) {
-				EventNotice e = futureEventList.pollFirst();
+				EventNotice e = futureEventList.poll();
 				now = e.getOccurrenceTime();
 				if (e.getEventType() == EventType.Arrival) {
 					totUser++;
 					totArrival++;
-					//classArrival[e.getPriority()]++;
+					classArrival[calcClassPriority(e.getServiceTime())]++;
 					
 					if (totUser == 1) {
 						free = now + e.getServiceTime();
@@ -151,35 +129,41 @@ public class MM1SJNsimulator {
 						Id++;
 						futureEventList.add(new EventNotice(Id, now+rndArrivi.nextRandom(), EventType.Arrival, rndServizio.nextRandom()));
 						
-						
 					}
 				}else if (e.getEventType() == EventType.Departure) {
 					totUser--;
 					totDeparture++;
-					//classDeparture[e.getPriority()]++;
+					classDeparture[calcClassPriority(e.getServiceTime())]++;
 					if (totUser > 0) {
 						int j = 0;
-						SJNPriorityQueueElement elem = priorityQueue.pollFirst();
+						SJNPriorityQueueElement elem = priorityQueue.poll();
 						totWait = totWait + (now - elem.getOccurrenceTime());
-						//wait[j] = wait[j] + (now -elem.getOccurrenceTime());
+						wait[calcClassPriority(e.getServiceTime())] += (now -elem.getOccurrenceTime());
 						futureEventList.add(new EventNotice(elem.getId(), now+elem.getServiceTime(), EventType.Departure, 0));
 					}
 				}
 				
 			}
-			/*
-			for (int j = 0; j < nClasses; j++){
+			for(int i=0; i<nClasses; i++){
 				
-				System.out.print(""+wait[j]);
-				System.out.print(" "+classDeparture[j]);
-				System.out.println(" ");
-				
-				results[step][j] = wait[j]/classDeparture[j];
+				if (classArrival[i]==0)
+					results[nSim][i] = 0.0;
+				else
+					results[nSim][i]=wait[i]/classArrival[i];
 			}
-			*/
-			results[step] = totWait/totArrival;
+			
 			step++;
 		}
 		return results;
+	}
+	
+	private int calcClassPriority(double theta){
+	
+		double meanTheta = (1.0/this.mu);
+		double step = meanTheta/(this.nClasses/2);
+		
+		int i=(int)Math.floor(theta/step);
+		
+		return (i>=nClasses)?nClasses-1:i;
 	}
 }
