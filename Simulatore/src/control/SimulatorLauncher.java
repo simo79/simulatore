@@ -58,7 +58,7 @@ public class SimulatorLauncher {
 	 * @param confidenceLevel livello di confidenza da utilizzare
 	 * @param T tempo su cui calcolare l'IDC
 	 * @param type tipo di distribuzione degli arrivi (esponenziale, deterministico, pareto, SPP)
-	 * @param param parametri per il tipo di distribuzione suddetto, si veda la javadoc del TrafficGenerator
+	 * @param param parametri per il tipo di distribuzione suddetto, si veda la javadoc del RandomGenerator
 	 * @param logFrm riferimento alla finestra di log
 	 */
 	public static void lauchSimulation2(int N, int nSim, double confidenceLevel, double T, DistributionType type, double[] param, LogForm logFrm){
@@ -74,7 +74,7 @@ public class SimulatorLauncher {
 	 * @param levelOfConfidence livello di confidenza da utilizzare
 	 * @param values numero di valori dell'ascissa in cui l'intervallo (0,1) di rho viene suddiviso. Determina l'incremento di rho per ogni simulazione.
 	 * @param typeOfService tipo di distribuzione del servizio (esponenziale, deterministico, pareto)
-	 * @param par parametri per il tipo di distribuzione suddetto, si veda la javadoc del MG1Simulator
+	 * @param par parametri per il tipo di distribuzione suddetto, si veda la javadoc del RandomGenerator
 	 * @param logFrm riferimento alla finestra di log
 	 */
 	 
