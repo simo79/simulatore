@@ -34,76 +34,71 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButton;
 
 public class InputForm {
-	private GuiPerspective perspective;  //  @jve:decl-index=0:
-	private CostraintValue costraintValue;  //  @jve:decl-index=0:
+	private GuiPerspective perspective;  
+	private CostraintValue costraintValue; 
+	private LogForm logForm;
 	
-	private JFrame jFmainFrame = null;  //  @jve:decl-index=0:visual-constraint="8,8"
+	private JFrame jFmainFrame = null;  
 	private JPanel jCPmainPanel = null;
-	private JComboBox jCBdistrSelector = null;  
+	
+	private JComboBox jCBdistrSelector = null;
+	private JComboBox jCBcase = null;
+	
 	private JLabel jLfrequenza = null;  
 	private JLabel jLalpha = null; 
 	private JLabel jLrapporto = null;  
 	private JLabel jLq01 = null;
 	private JLabel jLq10 = null;
+	private JLabel jLN = null;
+	private JLabel jLnumSim = null;
+	private JLabel jLT = null;
+	private JLabel jLvalues = null;
+	private JLabel jLconfidenceLevel = null;
+	private JLabel jLrange = null;
+	private JLabel jLtrattino = null;
+	private JLabel jLpasso = null;
+	private JLabel jLvalVicolato = null;
+	private JLabel jLmu = null;
+	
 	private JTextField jTFfrequenza = null;
 	private JTextField jTFalpha = null;
 	private JTextField jTFrapp = null;
 	private JTextField jTFg10 = null;
 	private JTextField jTFg01 = null;
-	private JButton jBstart = null;
-	private JPanel jPsimulation = null;
-	private JLabel jLN = null;
-	private JLabel jLnumSim = null;
-	private JLabel jLT = null;
 	private JTextField jTFN = null;
 	private JTextField jTFnumSim = null;
 	private JTextField jTFT = null;
-	private LogForm logForm;
+	private JTextField jTFconfidenceLevel = null;
+	private JTextField jTFminRange = null;
+	private JTextField jTFmaxRange = null;
+	private JTextField jTFpasso = null;
+	private JTextField jTFvaloreVicolato = null;
+	private JTextField jTFmu = null;
+	private JTextField jTFvalues = null;
+	
+	private JButton jBstart = null;
+	
 	private JPanel jPdistribution = null;
+	private JPanel jPsimulation = null;
+	private JPanel jPparSimVariabili = null;
+	private JPanel jPservizio = null;
+	private JPanel jPhide = null;
+	
 	//Menu
 	private JMenuBar jMBmainMenu = null;
 	private JMenu jMfile = null;
-	private ButtonGroup groupRBmenu;  //  @jve:decl-index=0:
+	private ButtonGroup groupRBmenu;  
 	private JRadioButtonMenuItem jRBMIesercitazione1 = null;
 	private JRadioButtonMenuItem jRBMIesercitazione2 = null;
 	private JRadioButtonMenuItem jRBMIesercitazione3 = null;
+	private JRadioButtonMenuItem jRBMIesercitazione4 = null;
 	private JMenuItem jMIesci = null;
+	
+	
 	private ButtonGroup groupRBvincola;
-	private JLabel jLconfidenceLevel = null;
-
-	private JTextField jTFconfidenceLevel = null;
-
-	private JLabel jLvalues = null;
-
-	private JTextField jTFvalues = null;
-
-	private JPanel jPparSimVariabili = null;
-
 	private JRadioButton jRBvincolaN = null;
-
 	private JRadioButton jRBvincolaConfidenza = null;
 
-	private JLabel jLrange = null;
-
-	private JTextField jTFminRange = null;
-
-	private JTextField jTFmaxRange = null;
-
-	private JLabel jLtrattino = null;
-
-	private JLabel jLpasso = null;
-
-	private JTextField jTFpasso = null;
-
-	private JLabel jLvalVicolato = null;
-
-	private JTextField jTFvaloreVicolato = null;
-	private JPanel jPservizio = null;
-	private JRadioButtonMenuItem jRBMIesercitazione4 = null;
-	private JLabel jLmu = null;
-	private JTextField jTFmu = null;
-	private JPanel jPhide = null;
-	private JComboBox jCBcase = null;
 	
 	public InputForm(){
 		setPerspective(GuiPerspective.Inizializza);
@@ -129,6 +124,7 @@ public class InputForm {
 		return jFmainFrame;
 	}
 	
+	//[start] ComboBox
 	/**
 	 * This method initializes jCBdistrSelector	
 	 * 	
@@ -143,7 +139,18 @@ public class InputForm {
 		}
 		return jCBdistrSelector;
 	}
-	
+	/**
+	 * This method initializes jCBcase	
+	 * 	
+	 * @return javax.swing.JComboBox	
+	 */
+	public JComboBox getJCBcase() {
+		if (jCBcase == null) {
+			jCBcase = new JComboBox(CaseClasses.values());
+			jCBcase.setBounds(new Rectangle(5, 410, 230, 23));
+		}
+		return jCBcase;
+	}
 	/**
 	 * This method initializes jBstart	
 	 * 	
@@ -158,6 +165,7 @@ public class InputForm {
 		}
 		return jBstart;
 	}
+	//[end]
 	
 	//[start] Label
 	/**
@@ -534,6 +542,8 @@ public class InputForm {
 		}
 		return jTFvalues;
 	}
+	//[end]
+	
 	//[start] Pannelli
 	/**
 	 * This method initializes jCPmainPanel	
@@ -838,10 +848,8 @@ public class InputForm {
 			case Esercitazione4:
 				if(perspective != GuiPerspective.Esercitazione4){
 					logForm.reset();
-					logForm.log("[caso1] rho1 = x rho, rho2 = (1-x) rho");
-					logForm.log("[caso2] rho1 = rho2 = x/2 rho, rho3 = (1-x) rho");
-					logForm.log("[caso3] rho1 = x/10 rho, rho2 = 9/10 x rho, rho3 = (1-x) rho");
-					logForm.log("[caso4] rho1 = x rho, rho2 = rho3 = (1-x)/2 rho");
+					logEse4Legenda();
+					logForm.refresh();
 					perspective = GuiPerspective.Esercitazione4;
 					//Impostazioni distribuzione
 					jCBdistrSelector.setSelectedItem(DistributionType.Exponential);
@@ -870,11 +878,15 @@ public class InputForm {
 				break;
 		}	
 	}
-
+	/**
+	 * 
+	 * @param distr
+	 */
 	public void setDistributionPerspective(DistributionType distr){
 		switch(distr){
 		case Deterministic:
 			if(perspective != GuiPerspective.Esercitazione3){
+				//Nell'esercitazione 3 il rho non deve essere specificato
 				getJLfrequenza().setEnabled(true);
 				getJTFfrequenza().setEnabled(true);
 			}
@@ -889,6 +901,7 @@ public class InputForm {
 			break;
 		case Exponential:
 			if(perspective != GuiPerspective.Esercitazione3){
+				//Nell'esercitazione 3 il rho non deve essere specificato
 				getJLfrequenza().setEnabled(true);
 				getJTFfrequenza().setEnabled(true);
 			}
@@ -903,6 +916,7 @@ public class InputForm {
 			break;
 		case Pareto:
 			if(perspective != GuiPerspective.Esercitazione3){
+				//Nell'esercitazione 3 il rho non deve essere specificato
 				getJLfrequenza().setEnabled(true);
 				getJTFfrequenza().setEnabled(true);
 			}
@@ -917,6 +931,7 @@ public class InputForm {
 			break;
 		case SPP:
 			if(perspective != GuiPerspective.Esercitazione3){
+				//Nell'esercitazione 3 il rho non deve essere specificato
 				getJLfrequenza().setEnabled(true);
 				getJTFfrequenza().setEnabled(true);
 			}
@@ -1015,19 +1030,17 @@ public class InputForm {
 		}
 		return param;
 	}
-	//[end]
-	/**
-	 * This method initializes jCBcase	
-	 * 	
-	 * @return javax.swing.JComboBox	
-	 */
-	public JComboBox getJCBcase() {
-		if (jCBcase == null) {
-			jCBcase = new JComboBox(CaseClasses.values());
-			jCBcase.setBounds(new Rectangle(5, 410, 230, 23));
-		}
-		return jCBcase;
+	
+	public void logEse4Legenda(){
+		logForm.log("[caso1] rho1 = x rho, rho2 = (1-x) rho");
+		logForm.log("[caso2] rho1 = rho2 = x/2 rho, rho3 = (1-x) rho");
+		logForm.log("[caso3] rho1 = x/10 rho, rho2 = 9/10 x rho, rho3 = (1-x) rho");
+		logForm.log("[caso4] rho1 = x rho, rho2 = rho3 = (1-x)/2 rho");
+		logForm.log(" ");
 	}
+	//[end]
+	
+	
 	
 	
 	
