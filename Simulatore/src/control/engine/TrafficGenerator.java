@@ -9,13 +9,13 @@ public class TrafficGenerator {
 	private int nSim;
 	private int N;
 	private double T;
-	private DistributionType type = DistributionType.SPP;
+	private DistributionType type;
 	private double[] param;
 	private RandomGenerator rnd;
 	private LogForm logFrm;
 	private double confidenceLevel;
 	
-	public TrafficGenerator(int N,int nSim, double confidenceLevel,double T, DistributionType type,double[] param){
+	public TrafficGenerator(int N,int nSim, double confidenceLevel,double T, DistributionType type,double[] param,LogForm frm){
 		this.nSim=nSim;
 		this.type=type;
 		this.param=param;
@@ -23,15 +23,7 @@ public class TrafficGenerator {
 		this.T=T;
 		this.N=N;
 		this.nSim=nSim;
-		
-		logFrm=null;
-		
-
-	}
-	
-	public TrafficGenerator(int N,int nSim,double confidenceLevel,double T, DistributionType type,double[] param,LogForm logFrm){
-		this(N,nSim,confidenceLevel,T,type,param);
-		this.logFrm=logFrm;
+		this.logFrm=frm;
 	}
 	
 	public void run(){	
@@ -40,9 +32,10 @@ public class TrafficGenerator {
 		int j=0;
 		double now=0;
 		double arrivi=0;
-		
+		logFrm.getJPBstatus().setMaximum(nSim);
+		logFrm.getJPBstatus().setValue(0);
+		rnd = new RandomGenerator(type,param);
 		while(j<nSim){
-			rnd = new RandomGenerator(type,param);
 			i=0;
 			arrivi=0;
 			now=0;
@@ -55,10 +48,10 @@ public class TrafficGenerator {
 			result[j]=arrivi;
 			logFrm.log("[step "+j+"] K(T)= "+arrivi);
 			j++;
+			logFrm.getJPBstatus().setValue(j);
 		}
 		logFrm.log("E[K(T)]: "+Utility.mediaCamp(result));
 		logFrm.log("Confidenza: "+Utility.semiAmpiezza(result, confidenceLevel));
 		logFrm.log("IDC(T): "+Utility.indiceDisp(result));	
-		//Utility.createCSVFile("log", null, rnd.getLog());
 	}
 }
