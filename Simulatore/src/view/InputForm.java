@@ -774,7 +774,7 @@ public class InputForm {
 		switch(persp){
 			case Esercitazione1:
 				if(perspective!=GuiPerspective.Esercitazione1){
-					logForm.resetLog();
+					logForm.reset();
 					perspective=GuiPerspective.Esercitazione1;
 					jCBdistrSelector.removeItem(DistributionType.SPP);			
 					jLT.setEnabled(false);
@@ -787,7 +787,7 @@ public class InputForm {
 				break;
 			case Esercitazione2:
 				if(perspective!= GuiPerspective.Esercitazione2){
-					logForm.resetLog();
+					logForm.reset();
 					perspective = GuiPerspective.Esercitazione2;
 					//Impostazione distribuzione
 					jCBdistrSelector.setEditable(true);
@@ -811,7 +811,7 @@ public class InputForm {
 				break;
 			case Esercitazione3:
 				if(perspective != GuiPerspective.Esercitazione3){
-					logForm.resetLog();
+					logForm.reset();
 					perspective = GuiPerspective.Esercitazione3;
 					//Impostazione distribuzione
 					jCBdistrSelector.setEditable(true);
@@ -837,7 +837,7 @@ public class InputForm {
 				break;
 			case Esercitazione4:
 				if(perspective != GuiPerspective.Esercitazione4){
-					logForm.resetLog();
+					logForm.reset();
 					logForm.log("[caso1] rho1 = x rho, rho2 = (1-x) rho");
 					logForm.log("[caso2] rho1 = rho2 = x/2 rho, rho3 = (1-x) rho");
 					logForm.log("[caso3] rho1 = x/10 rho, rho2 = 9/10 x rho, rho3 = (1-x) rho");
