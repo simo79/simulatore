@@ -92,12 +92,14 @@ public class InputForm {
 	private JRadioButtonMenuItem jRBMIesercitazione2 = null;
 	private JRadioButtonMenuItem jRBMIesercitazione3 = null;
 	private JRadioButtonMenuItem jRBMIesercitazione4 = null;
+	private JRadioButtonMenuItem jRBMIesercitazione5 = null;
 	private JMenuItem jMIesci = null;
 	
 	
 	private ButtonGroup groupRBvincola;
 	private JRadioButton jRBvincolaN = null;
 	private JRadioButton jRBvincolaConfidenza = null;
+	
 
 	
 	public InputForm(){
@@ -569,7 +571,6 @@ public class InputForm {
 		if (jPdistribution == null) {
 			jPdistribution = new JPanel();
 			jPdistribution.setLayout(null);
-			jPdistribution.setToolTipText("Parametri Distribuzione");
 			jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Parametri Distribuzione", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 			jPdistribution.setBounds(new Rectangle(0, 155, 240, 190));
 			jPdistribution.add(getJCBdistrSelector(), null);
@@ -595,7 +596,6 @@ public class InputForm {
 		if (jPsimulation == null) {
 			jPsimulation = new JPanel();
 			jPsimulation.setLayout(null);
-			jPsimulation.setToolTipText("Parametri Simulazione");
 			jPsimulation.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Parametri Simulazione Costanti", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 			//Aggiunta Elementi
 			jPsimulation.setBounds(new Rectangle(0, 0, 240, 150));
@@ -700,11 +700,10 @@ public class InputForm {
 			jMfile.add(getJRBMIesercitazione2());
 			jMfile.add(getJRBMIesercitazione3());
 			jMfile.add(getJRBMIesercitazione4());
+			jMfile.add(getJRBMIesercitazione5());
 			jMfile.addSeparator();
 			jMfile.add(getJMIesci());
 
-			
-			
 		}
 		return jMfile;
 	}
@@ -763,6 +762,19 @@ public class InputForm {
 		return jRBMIesercitazione4;
 	}
 	/**
+	 * This method initializes jRBMIesercitazione5	
+	 * 	
+	 * @return javax.swing.JRadioButtonMenuItem	
+	 */
+	private JRadioButtonMenuItem getJRBMIesercitazione5() {
+		if (jRBMIesercitazione5 == null) {
+			jRBMIesercitazione5 = new JRadioButtonMenuItem(GuiPerspective.Esercitazione5.toString());
+			groupRBmenu.add(jRBMIesercitazione5);
+			jRBMIesercitazione5.addActionListener(new JRBMIesercitazioneListener(this));
+		}
+		return jRBMIesercitazione5;
+	}
+	/**
 	 * This method initializes jMIesci	
 	 * 	
 	 * @return javax.swing.JMenuItem	
@@ -807,8 +819,8 @@ public class InputForm {
 					jTFT.setEnabled(true);
 					jLvalues.setEnabled(false);
 					jTFvalues.setEnabled(false);
-					jLfrequenza.setEnabled(true);
-					jTFfrequenza.setEditable(true);
+					jCBdistrSelector.setSelectedItem(DistributionType.Exponential);
+					jTFfrequenza.setText("0.8");
 					jLfrequenza.setText("frequenza:");
 					jTFalpha.setText("3");
 					jCBdistrSelector.setEnabled(true);
@@ -864,8 +876,31 @@ public class InputForm {
 					jTFfrequenza.setText("0.8");
 					jLvalues.setEnabled(true);
 					jTFvalues.setEnabled(true);
+					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione Degli Arrivi", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 					//Impostazioni Visualizzazione Form/Pannelli
 					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,535));
+					jPparSimVariabili.setVisible(false);
+					jPhide.setVisible(true);
+				}
+				break;
+			case Esercitazione5:
+				if(perspective != GuiPerspective.Esercitazione5){
+					logForm.reset();
+					perspective = GuiPerspective.Esercitazione5;
+					//Impostazione distribuzione
+					jCBdistrSelector.setSelectedItem(DistributionType.Exponential);
+					jCBdistrSelector.setEnabled(false);
+					//Varie
+					jLT.setEnabled(false);
+					jTFT.setEnabled(false);
+					jLvalues.setEnabled(false);
+					jTFvalues.setEnabled(false);
+					jLfrequenza.setEnabled(true);
+					jLfrequenza.setText("rho:");
+					jTFfrequenza.setText("0.8");
+					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione Degli Arrivi", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
+					//Impostazioni Visualizzazione Form/Pannelli
+					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,500));
 					jPparSimVariabili.setVisible(false);
 					jPhide.setVisible(true);
 				}
@@ -1054,6 +1089,7 @@ public class InputForm {
 		logForm.log(" ");
 	}
 	//[end]
+	
 	
 	
 	
