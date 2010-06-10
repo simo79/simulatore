@@ -10,7 +10,12 @@ import model.SJNPriorityQueueElement;
 import model.RandomGenerator;
 import model.enumerators.DistributionType;
 import model.enumerators.EventType;
-
+/**
+ * Classe che realizza un simulatore di un sistema MM1 con scheduling in coda di tipo Shortest Job Next
+ * 
+ * @author Matteo Desanti, Elia Maldini, Alessandro Montalti
+ *
+ */
 public class MM1SJNsimulator {
 	
 	private PriorityQueue<EventNotice> futureEventList;
@@ -41,13 +46,14 @@ public class MM1SJNsimulator {
 	private LogForm logFrm;
 	private double rho;
 	private double mu;
+	
 	/**
+	 * Crea un nuovo simulatore MM1 con i parametri specificati.
 	 * 
-	 * @param N
-	 * @param nClasses
-	 * @param rho
-	 * @param mu
-	 * @param nSim
+	 * @param N numero di arrivi da generare
+	 * @param rho rho del sistema
+	 * @param mu frequenza di servizio (esponenziale)
+	 * @param nSim numero di simulazioni consecutive da realizzare
 	 */
 	public MM1SJNsimulator(int N, double rho, double mu, int nSim){
 		this.rho=rho;
@@ -60,21 +66,22 @@ public class MM1SJNsimulator {
 	}
 	/**
 	 * 
-	 * @param N
-	 * @param nClasses
-	 * @param rho
-	 * @param mu
-	 * @param nSim
-	 * @param logFrm
+	 * Crea un nuovo simulatore MM1 con i parametri specificati.
+	 * 
+	 * @param N numero di arrivi da generare
+	 * @param rho rho del sistema
+	 * @param mu frequenza di servizio (esponenziale)
+	 * @param nSim numero di simulazioni consecutive da realizzare
+	 * @param logFrm riferimento alla finestra di log
 	 */
 	public MM1SJNsimulator(int N, double rho, double mu, int nSim, LogForm logFrm){
 		this(N,rho,mu,nSim);
 		this.logFrm=logFrm;
 	}
 	/**
-	 * 
+	 * Metodo di inizializzazione delle variabili interne richiamato a ogni step di simulazione
 	 */
-	private void inizializza() {
+	private void inizialize() {
 		totArrival=0;
 		totDeparture=0;
 		
@@ -99,14 +106,16 @@ public class MM1SJNsimulator {
 	}
 	/**
 	 * 
-	 * @return
+	 * Avvia la simulazione del sistema.
+	 * 
+	 * @return matrice di tempi medi spesi in coda per ogni classe di priorità (il valore è definito da codice pari a 40) per ogni step di simulazione
 	 */
 	public double[][] run(){
 		int step=0;
 		double [][] results = new double[nSim][nClasses];
 		
 		while (step<nSim){	
-			inizializza();
+			inizialize();
 			while (totDeparture < N) {
 				EventNotice e = futureEventList.poll();
 				now = e.getOccurrenceTime();
@@ -157,6 +166,12 @@ public class MM1SJNsimulator {
 		return results;
 	}
 	
+	/**
+	 * Metodo per la determinazione della classe di priorità in funzione del tempo di servizio
+	 * 
+	 * @param theta tempo di servizio
+	 * @return classe di priorità relativa al tempo di servizio indicato
+	 */
 	private int calcClassPriority(double theta){
 	
 		double meanTheta = (1.0/this.mu);

@@ -6,6 +6,12 @@ import view.LogForm;
 
 import control.Utility;
 
+/**
+ * Classe utilizzata per la realizzazione della prima esercitazione per la generazione di numeri pseudo random tra (0,1) e calcolo della loro media e intervallo di confidenza
+ * 
+ * @author Matteo Desanti, Elia Maldini, Alessandro Montalti
+ * 
+ */
 public class NumbersGenerator {
 	private int N;
 	private double minConfidence;
@@ -22,6 +28,15 @@ public class NumbersGenerator {
 	private double stepConfidence;
 	private LogForm logFrm;
 	
+	/**
+	 * Crea un nuovo generatore per la simulazione al variare del livello di confidenza.
+	 * 
+	 * @param N numero di valori da generare
+	 * @param minConfidence valore minimo del livello di confidenza da cui partire
+	 * @param maxConfidence valore massimo del livello di confidenza a cui arrivare
+	 * @param stepConfidence valore di incremento del livello di confidenza tra uno step di simulazione e l'altro
+	 * @param frm riferimento alla finestra di log
+	 */
 	public NumbersGenerator(int N, double minConfidence, double maxConfidence, double stepConfidence, LogForm frm){
 		this.levelOfConfidence=0.0;
 		this.N=N;
@@ -40,6 +55,15 @@ public class NumbersGenerator {
 		this.nSim = (int)(Math.floor((this.maxConfidence-this.minConfidence)/this.stepConfidence))+1;
 		logFrm=frm;
 	}
+	/**
+	 * Crea un nuovo generatore per la simulazione al variare del numero di valori generati
+	 *  
+	 * @param minN valore minimo di N da cui parte la simulazione
+	 * @param maxN valore massimo di N a cui concludere la simulazione
+	 * @param stepN valore di incremento di N tra passi successivi di simulazione
+	 * @param levelOfConfidence livello di confidenza da utilizzare per il calcolo dell'intervallo
+	 * @param frm riferimento alla finestra di log
+	 */
 	
 	public NumbersGenerator(int minN, int maxN, int stepN, double levelOfConfidence, LogForm frm){
 		this.minN=minN;
@@ -55,7 +79,17 @@ public class NumbersGenerator {
 		this.levelOfConfidence=levelOfConfidence;
 		logFrm=frm;
 	}
-	
+	/**
+	 * Lancia la simulazione con i parametri specificati
+	 * 
+	 * @return una matrici di nSim (=50) righe e 3 colonne formattate come segue:
+	 * 
+	 * caso 1 (variare del livello di confidenza)
+	 * livello di confidenza - media dei valori - semi ampiezza dell'intervallo
+	 * 
+	 * caso 2 (variare del numero di valori generati)
+	 * numero di valori generati - media dei valori - semi ampiezza dell'intervallo
+	 */
 	public double[][] run(){
 		MersenneTwister rnd = new MersenneTwister(System.currentTimeMillis());
 		double[][] fileContent=null;

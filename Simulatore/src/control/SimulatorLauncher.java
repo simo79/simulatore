@@ -136,7 +136,6 @@ public class SimulatorLauncher {
 			step=1.0/(xVal+1);
 			x=step;
 			try{
-				//while (x<1.0){
 				while(i<xVal){
 					rhos[0]= x*rho;
 					rhos[1]= (1-x)*rho;
@@ -171,7 +170,6 @@ public class SimulatorLauncher {
 			x=step;
 			try{
 				while(i<xVal){
-				//while (x<1){
 					rhos[0]= x/2*rho;
 					rhos[1]= x/2*rho;
 					rhos[2]= (1-x)*rho;
@@ -183,7 +181,6 @@ public class SimulatorLauncher {
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
 						double semi = Utility.semiAmpiezza(partial, 0.95);
-						//System.out.print(" "+media);
 						log[i][k+1]= media;
 						log[i][k+4]= semi;
 						
@@ -207,7 +204,6 @@ public class SimulatorLauncher {
 			x=step;
 			try{
 				while(i<xVal){
-				//while (x<1){
 					rhos[0]= x/10*rho;
 					rhos[1]= x*9/10*rho;
 					rhos[2]= (1-x)*rho;
@@ -219,7 +215,6 @@ public class SimulatorLauncher {
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
 						double semi = Utility.semiAmpiezza(partial, 0.95);
-						//System.out.print(" "+media);
 						log[i][k+1]= media;
 						log[i][k+4]= semi;
 						
@@ -243,7 +238,6 @@ public class SimulatorLauncher {
 			x=step;
 			try{
 				while(i<xVal){
-				//while (x<1){
 					rhos[0]= x*rho;
 					rhos[1]= (1-x)/2*rho;
 					rhos[2]= (1-x)/2*rho;
@@ -255,7 +249,6 @@ public class SimulatorLauncher {
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
 						double semi = Utility.semiAmpiezza(partial, 0.95);
-						//System.out.print(" "+media);
 						log[i][k+1]= media;
 						log[i][k+4]= semi;
 						

@@ -6,7 +6,12 @@ import model.EventNotice;
 import model.RandomGenerator;
 import model.enumerators.DistributionType;
 import model.enumerators.EventType;
-
+/**
+ * Classe che realizza un simulatore di un sistema MG1
+ * 
+ * @author Matteo Desanti, Elia Maldini, Alessandro Montalti
+ * 
+ */
 public class MG1simulator {
 	
 	
@@ -23,7 +28,15 @@ public class MG1simulator {
 	private RandomGenerator rndServizio;
 	private RandomGenerator rndArrivi;
 	
-	
+	/**
+	 * Crea un nuovo simulatore MG1 con i parametri specificati.
+	 * 
+	 * @param lambdaArr frequenza degli arrivi
+	 * @param serv tipo di distribuzione del servizio
+	 * @param par array di parametri per la distribuzione del servizio (vedi Random Generator)
+	 * @param tries numero di simulazioni successive eseguite
+	 * @param users numero di utenti in arrivo al sistema
+	 */
 	public MG1simulator(double lambdaArr,DistributionType serv, double[] par, int tries, int users){
 		futureEventList = new PriorityQueue<EventNotice>();
 		rndServizio = new RandomGenerator(serv,par);
@@ -32,7 +45,7 @@ public class MG1simulator {
 		max_users=users;
 	}
 	/**
-	 * 
+	 * Metodo di inizializzazione delle variabili interne richiamato a ogni step di simulazione
 	 */
 	private void initialize(){
 		Id=0;
@@ -43,8 +56,9 @@ public class MG1simulator {
 	}
 	/**
 	 * 
-	 * @param tries
-	 * @return
+	 * Avvia la simulazione del sistema.
+	 * 
+	 * @return array di tempi medi spesi in coda per ogni step di simulazione
 	 */
 	public double[] run(){
 		double[] result = new double[tries];

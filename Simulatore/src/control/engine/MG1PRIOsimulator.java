@@ -10,7 +10,12 @@ import model.PriorityQueueElement;
 import model.RandomGenerator;
 import model.enumerators.DistributionType;
 import model.enumerators.EventType;
-
+/**
+ * Classe che realizza un simulatore di un sistema MM1 con prioritˆ
+ *  
+ * @author Matteo Desanti, Elia Maldini, Alessandro Montalti
+ * 
+ */
 public class MG1PRIOsimulator {
 	
 	private PriorityQueue<PriorityEventNotice> futureEventList;
@@ -30,7 +35,6 @@ public class MG1PRIOsimulator {
 	private int[] classDeparture;
 	
 	private int nSim;
-	//private int max_users;
 	
 	private double free;
 	private double now;
@@ -42,12 +46,13 @@ public class MG1PRIOsimulator {
 	private LogForm logFrm;
 
 	/**
+	 * Crea un nuovo simulatore con i parametri specificati.
 	 * 
-	 * @param N
-	 * @param nClasses
-	 * @param rho
-	 * @param mu
-	 * @param nSim
+	 * @param N numero di arrivi da simulare
+	 * @param nClasses numero di classi di prioritˆ degli eventi di arrivo
+	 * @param rho array con rho rispettivi ad ogni classe di prioritˆ
+	 * @param mu frequenza di servizio (esponenziale)
+	 * @param nSim numero di simulazioni successive
 	 */
 	public MG1PRIOsimulator(int N, int nClasses, double[] rho, double mu, int nSim){
 		this.nSim = nSim;
@@ -71,22 +76,23 @@ public class MG1PRIOsimulator {
 		}
 	}
 	/**
+	 * Crea un nuovo simulatore con i parametri specificati.
 	 * 
-	 * @param N
-	 * @param nClasses
-	 * @param rho
-	 * @param mu
-	 * @param tries
-	 * @param logFrm
+	 * @param N numero di arrivi da simulare
+	 * @param nClasses numero di classi di prioritˆ degli eventi di arrivo
+	 * @param rho array con rho rispettivi ad ogni classe di prioritˆ
+	 * @param mu frequenza di servizio (esponenziale)
+	 * @param nSim numero di simulazioni successive
+	 * @param logFrm riferimento alla finestra di log
 	 */
-	public MG1PRIOsimulator(int N, int nClasses, double[] rho, double mu, int tries, LogForm logFrm){
-		this(N,nClasses,rho,mu,tries);
+	public MG1PRIOsimulator(int N, int nClasses, double[] rho, double mu, int nSim, LogForm logFrm){
+		this(N,nClasses,rho,mu,nSim);
 		this.logFrm=logFrm;
 	}
 	/**
-	 * 
+	 * Metodo di inizializzazione delle variabili interne richiamato a ogni step di simulazione
 	 */
-	private void inizializza() {
+	private void inizialize() {
 		totArrival=0;
 		totDeparture=0;
 		totUser=0;
@@ -104,24 +110,20 @@ public class MG1PRIOsimulator {
 			priorityQueues.add(i, new PriorityQueue<PriorityQueueElement>());
 			Id++;
 		}
-		/*
-		Object[] tmp = futureEventList.toArray();
-		for(int j=0; j<futureEventList.size();j++)
-			System.out.println((PriorityEventNotice)tmp[j]);*/
 		free=0.0;
 		now=0.0;
 		
 	}
 	/**
+	 * Avvia la simulazione del sistema 
 	 * 
-	 * @return
+	 * @return matrice di double dove per ogni step di simulazioni si ha il tempo media in coda per ogni classe di prioritˆ
 	 */
 	public double[][] run(){
 		int step=0;
 		double [][] results = new double[nSim][nClasses];
 		while (step<nSim){
-			//System.out.println("simulazione: "+step);
-			inizializza();
+			inizialize();
 			while (totDeparture < N) {
 				PriorityEventNotice e = futureEventList.poll();
 				now = e.getOccurrenceTime();
@@ -161,11 +163,6 @@ public class MG1PRIOsimulator {
 				
 			}
 			for (int j = 0; j < nClasses; j++){
-				/*
-					System.out.print(""+wait[j]);
-					System.out.print(" "+classDeparture[j]);
-					System.out.println(" ");
-				*/
 				results[step][j] = wait[j]/classDeparture[j];
 			}
 			step++;
