@@ -5,5 +5,6 @@ public enum GuiPerspective {
 	Esercitazione2,
 	Esercitazione3,
 	Esercitazione4,
+	Esercitazione5,
 	Inizializza
 }
