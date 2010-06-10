@@ -26,6 +26,9 @@ public class JRBMIesercitazioneListener implements ActionListener {
 			form.setPerspective(GuiPerspective.Esercitazione3);
 		if(e.getActionCommand().compareTo(GuiPerspective.Esercitazione4.toString())==0)
 			form.setPerspective(GuiPerspective.Esercitazione4);
+		if(e.getActionCommand().compareTo(GuiPerspective.Esercitazione5.toString())==0)
+			form.setPerspective(GuiPerspective.Esercitazione5);
+		
 	}
 	
 
