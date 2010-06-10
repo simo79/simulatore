@@ -92,7 +92,7 @@ public class LogForm {
 		model.addElement(entry);
 	}
 	
-	public void resetLog(){
+	public void reset(){
 		model.clear();
 	}
 	/**
