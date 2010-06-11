@@ -21,7 +21,7 @@ public class Test {
 		long ora = System.currentTimeMillis();
 		int N=100000;
 		int nSim = 1000;
-		int nClasses = 30;
+		int nClasses = 50;
 		double mu = 1.0;
 		double rho =0.8;
 		double step = 8.0/(mu*nClasses);
