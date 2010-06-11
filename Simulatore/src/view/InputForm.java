@@ -665,7 +665,7 @@ public class InputForm {
 		if (jPservizio == null) {
 			jPservizio = new JPanel();
 			jPservizio.setLayout(null);
-			jPservizio.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Parametri Servizio", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
+			jPservizio.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Utilizzazione", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 			jPservizio.setBounds(new Rectangle(0, 350, 240, 50));
 			jPservizio.add(getJLrho(), null);
 			jPservizio.add(getJTFrho(), null);
