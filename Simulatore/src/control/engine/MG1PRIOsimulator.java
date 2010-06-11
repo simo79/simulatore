@@ -20,7 +20,7 @@ public class MG1PRIOsimulator {
 	
 	private PriorityQueue<PriorityEventNotice> futureEventList;
 	
-	Vector<PriorityQueue<PriorityQueueElement>> priorityQueues;
+	private Vector<PriorityQueue<PriorityQueueElement>> priorityQueues;
 	
 	private int nClasses;
 
