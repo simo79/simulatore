@@ -22,9 +22,9 @@ public class MM1SJNsimulator {
 	
 	private PriorityQueue<SJNPriorityQueueElement> priorityQueue;
 	
-	private int nClasses = 40;
-	private int[] classArrival = new int[nClasses];
-	private int[] classDeparture = new int[nClasses];
+	private int nClasses;
+	private int[] classArrival;
+	private int[] classDeparture;
 	private double[] wait;
 	
 	private int N;
@@ -55,11 +55,11 @@ public class MM1SJNsimulator {
 	 * @param mu frequenza di servizio (esponenziale)
 	 * @param nSim numero di simulazioni consecutive da realizzare
 	 */
-	public MM1SJNsimulator(int N, double rho, double mu, int nSim){
+	public MM1SJNsimulator(int N, double rho, double mu, int nSim, int nClasses){
 		this.rho=rho;
 		this.mu=mu;
 		this.nSim = nSim;
-		//this.nClasses=nClasses;
+		this.nClasses=nClasses;
 		this.N=N;
 		logFrm=null;
 		
@@ -74,8 +74,8 @@ public class MM1SJNsimulator {
 	 * @param nSim numero di simulazioni consecutive da realizzare
 	 * @param logFrm riferimento alla finestra di log
 	 */
-	public MM1SJNsimulator(int N, double rho, double mu, int nSim, LogForm logFrm){
-		this(N,rho,mu,nSim);
+	public MM1SJNsimulator(int N, double rho, double mu, int nSim, int nClasses, LogForm logFrm){
+		this(N,rho,mu,nSim, nClasses);
 		this.logFrm=logFrm;
 	}
 	/**
@@ -84,7 +84,8 @@ public class MM1SJNsimulator {
 	private void inizialize() {
 		totArrival=0;
 		totDeparture=0;
-		
+		classArrival = new int[nClasses];
+		classDeparture = new int[nClasses];
 		wait = new double[nClasses];
 		for(int i=0; i<nClasses; i++){
 			wait[i]=0.0;
@@ -175,7 +176,7 @@ public class MM1SJNsimulator {
 	private int calcClassPriority(double theta){
 	
 		double meanTheta = (1.0/this.mu);
-		double step = meanTheta/(this.nClasses/2);
+		double step = 8*meanTheta/(this.nClasses);
 		
 		int i=(int)Math.floor(theta/step);
 		
