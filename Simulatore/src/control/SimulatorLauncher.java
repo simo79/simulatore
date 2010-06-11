@@ -93,7 +93,7 @@ public class SimulatorLauncher {
 				double media = Utility.mediaCamp(results);
 				double semiAmp= Utility.semiAmpiezza(results, levelOfConfidence);
 				logFrm.log("rho: "+rho+" media: "+media+" semi_amp: "+semiAmp);
-				log[i][0]= par[0];
+				log[i][0]= rho;
 				log[i][1]=media;
 				log[i][2]=semiAmp;
 				i++;
