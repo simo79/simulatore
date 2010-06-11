@@ -1,10 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import model.enumerators.DistributionType;
-
-import org.apache.commons.math.random.MersenneTwister;
 
 /**
  * Classe che implementa un generatore pseudo random di valori secondo diversi tipi di distribuzioni. E' basato sul generatore di numeri casuali MersenneTwister.
@@ -14,7 +13,7 @@ import org.apache.commons.math.random.MersenneTwister;
  */
 public class RandomGenerator {
 	private ArrayList<double[]> log;
-	private MersenneTwister rnd;
+	private Random rnd;
 	private DistributionType type;
 	//Esponenziale
 	private double lambda0;
@@ -54,7 +53,7 @@ public class RandomGenerator {
 	 */
 	public RandomGenerator(DistributionType type,double[] param){
 		log = new ArrayList<double[]>();
-		rnd = new MersenneTwister(System.currentTimeMillis());
+		rnd = new Random();
 		double lambdaMed,r;
 		this.type=type;
 		switch(type){
