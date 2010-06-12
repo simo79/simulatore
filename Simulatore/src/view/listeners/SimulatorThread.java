@@ -66,11 +66,12 @@ public class SimulatorThread extends Thread {
 			int nSim = Integer.parseInt(form.getJTFnumSim().getText());
 			int xValues = Integer.parseInt(form.getJTFvalues().getText());  
 			double[] param = form.getDistributionParameters();
+			double confidenceLevel = Double.parseDouble(form.getJTFconfidenceLevel().getText());
 			double rho= Double.parseDouble(form.getJTFrho().getText());
 			//Lancio la simulazione
-			SimulatorLauncher.lauchSimulation4(N,nSim,caseC,xValues,rho,param[0],form.getLog());
+			SimulatorLauncher.lauchSimulation4(N,nSim,confidenceLevel,caseC,xValues,rho,param[0],form.getLog());
 		}
-		if(form.getSelectedPerspective()==GuiPerspective.Esercitazione4){
+		if(form.getSelectedPerspective()==GuiPerspective.Esercitazione5){
 			int N = Integer.parseInt(form.getJTFN().getText());
 			int nSim = Integer.parseInt(form.getJTFnumSim().getText());
 			int nClasses = Integer.parseInt(form.getJTFvalues().getText());

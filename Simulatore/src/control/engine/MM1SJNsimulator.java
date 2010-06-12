@@ -114,7 +114,7 @@ public class MM1SJNsimulator {
 	public double[][] run(){
 		int step=0;
 		double [][] results = new double[nSim][nClasses];
-		
+		logFrm.getJPBstatus().setMaximum(nSim);
 		while (step<nSim){	
 			inizialize();
 			while (totDeparture < N) {
@@ -161,7 +161,7 @@ public class MM1SJNsimulator {
 				else
 					results[step][i]=wait[i]/classArrival[i];
 			}
-			
+			logFrm.getJPBstatus().setValue(step);
 			step++;
 		}
 		return results;

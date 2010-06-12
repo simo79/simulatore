@@ -29,11 +29,13 @@ public class SimulatorLauncher {
 	 * @param logFrm riferimento alla finestra di log
 	 */
 	public static void lauchSimulation1_1(int minN, int maxN, int passoN, double confidenceLevel, LogForm logFrm){
-		logFrm.reset();
+		long ora = System.currentTimeMillis();
 		double[][] fileContent = new NumbersGenerator(minN, maxN, passoN, confidenceLevel,logFrm).run();
 		Utility.createCSVFile("GenNCasuali_Nvariabile",null, fileContent);
+		logFrm.log(" ");
 		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file GenNCasuali_Nvariabile.csv");
-		logFrm.refresh();
+		long tempo = System.currentTimeMillis()-ora;
+		logFrm.log("Durata Simulazione: "+(tempo*1.0/1000)+" secondi");
 	}
 	/**
 	 * Avvio esercitazione 1 al variare del livello di confidenza
@@ -45,11 +47,13 @@ public class SimulatorLauncher {
 	 * @param logFrm riferimento alla finestra di log
 	 */
 	public static void lauchSimulation1_2(int N, double minValueConfidenza,double maxValueConfidenza,double passoConfidenza , LogForm logFrm){
-		logFrm.reset();
+		long ora = System.currentTimeMillis();
 		double[][] fileContent = new NumbersGenerator(N,minValueConfidenza,maxValueConfidenza, passoConfidenza,logFrm).run();
 		Utility.createCSVFile("GenNCasuali_Confvariabile",null, fileContent);
+		logFrm.log(" ");
 		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file GenNCasuali_Confvariabile.csv");
-		logFrm.refresh();
+		long tempo = System.currentTimeMillis()-ora;
+		logFrm.log("Durata Simulazione: "+(tempo*1.0/1000)+" secondi");
 	}
 	/**
 	 * Avvio esercitazione 2 per la generazione di traffici di vario tipo e calcolo del relatico IDC.
@@ -63,9 +67,10 @@ public class SimulatorLauncher {
 	 * @param logFrm riferimento alla finestra di log
 	 */
 	public static void lauchSimulation2(int N, int nSim, double confidenceLevel, double T, DistributionType type, double[] param, LogForm logFrm){
-		logFrm.reset();
+		long ora = System.currentTimeMillis();
 		new TrafficGenerator(N,nSim,confidenceLevel,T,type, param,logFrm).run();
-		logFrm.refresh();
+		long tempo = System.currentTimeMillis()-ora;
+		logFrm.log("Durata Simulazione: "+(tempo*1.0/1000)+" secondi");
 	}
 	/**
 	 * Avvio esercitazione 3 per la realizzazione di un sistema MG1.
@@ -80,6 +85,7 @@ public class SimulatorLauncher {
 	 */
 	 
 	public static void lauchSimulation3(int N, int nSim, double levelOfConfidence,int values, DistributionType typeOfService, double[] par,LogForm logFrm){
+		long ora = System.currentTimeMillis();
 		double step = 1.0/(values+1);
 		double rho=step;
 		double lambdaArr;
@@ -106,8 +112,11 @@ public class SimulatorLauncher {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		logFrm.log(" ");
 		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file MG1_"+typeOfService.toString()+".csv");
 		Utility.createCSVFile("MG1_"+typeOfService.toString(), null, log);
+		long tempo = System.currentTimeMillis()-ora;
+		logFrm.log("Durata Simulazione: "+(tempo*1.0/1000)+" secondi");
 	}
 	/**
 	 * 
@@ -121,7 +130,8 @@ public class SimulatorLauncher {
 	 * @param mu frequenza del servizio
 	 * @param logFrm riferimento alla finestra di log
 	 */
-	public static void lauchSimulation4(int N, int nSim, CaseClasses caseC,int xVal, double rho, double mu, LogForm logFrm){
+	public static void lauchSimulation4(int N, int nSim,double confidenceLevel, CaseClasses caseC,int xVal, double rho, double mu, LogForm logFrm){
+		long ora = System.currentTimeMillis();
 		double[][] log = null;
 		double[] rhos;
 		Integer i;
@@ -132,7 +142,7 @@ public class SimulatorLauncher {
 		switch(caseC){
 		case Caso1:
 			rhos = new double[2];
-			log = new double[xVal][5];
+			log = new double[xVal][7];
 			i=0;
 			logFrm.getJPBstatus().setMaximum(xVal);
 			step=1.0/(xVal+1);
@@ -148,9 +158,10 @@ public class SimulatorLauncher {
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial);
-						double semi = Utility.semiAmpiezza(partial, 0.95);
-						log[i][k+1]= media;
-						log[i][k+3]= semi;
+						double semi = Utility.semiAmpiezza(partial, confidenceLevel);
+						log[i][3*k+1]= media;
+						log[i][3*k+2]= media-semi;
+						log[i][3*k+3]= media+semi;
 						
 					}
 					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]);
@@ -165,7 +176,7 @@ public class SimulatorLauncher {
 			break;
 		case Caso2:
 			rhos = new double[3];
-			log = new double[xVal][7];
+			log = new double[xVal][10];
 			i=0;
 			logFrm.getJPBstatus().setMaximum(xVal);
 			step=1.0/(xVal+1);
@@ -182,12 +193,13 @@ public class SimulatorLauncher {
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
-						double semi = Utility.semiAmpiezza(partial, 0.95);
-						log[i][k+1]= media;
-						log[i][k+4]= semi;
+						double semi = Utility.semiAmpiezza(partial, confidenceLevel);
+						log[i][3*k+1]= media;
+						log[i][3*k+2]= media-semi;
+						log[i][3*k+3]= media+semi;
 						
 					}
-					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
+					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][4]+" n2: "+log[i][7]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
@@ -199,7 +211,7 @@ public class SimulatorLauncher {
 			break;
 		case Caso3:
 			rhos = new double[3];
-			log = new double[xVal][7];
+			log = new double[xVal][10];
 			i=0;
 			logFrm.getJPBstatus().setMaximum(xVal);
 			step=1.0/(xVal+1);
@@ -216,12 +228,13 @@ public class SimulatorLauncher {
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
-						double semi = Utility.semiAmpiezza(partial, 0.95);
-						log[i][k+1]= media;
-						log[i][k+4]= semi;
+						double semi = Utility.semiAmpiezza(partial, confidenceLevel);
+						log[i][3*k+1]= media;
+						log[i][3*k+2]= media-semi;
+						log[i][3*k+3]= media+semi;
 						
 					}
-					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
+					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][4]+" n2: "+log[i][7]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
@@ -233,7 +246,7 @@ public class SimulatorLauncher {
 			break;
 		case Caso4:
 			rhos = new double[3];
-			log = new double[xVal][7];
+			log = new double[xVal][10];
 			i=0;
 			logFrm.getJPBstatus().setMaximum(xVal);
 			step=1.0/(xVal+1);
@@ -250,12 +263,13 @@ public class SimulatorLauncher {
 						for(int j=0; j<nSim; j++)
 							partial[j]=results[j][k];
 						double media = Utility.mediaCamp(partial); 
-						double semi = Utility.semiAmpiezza(partial, 0.95);
-						log[i][k+1]= media;
-						log[i][k+4]= semi;
+						double semi = Utility.semiAmpiezza(partial, confidenceLevel);
+						log[i][3*k+1]= media;
+						log[i][3*k+2]= media-semi;
+						log[i][3*k+3]= media+semi;
 						
 					}
-					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]+" n2: "+log[i][3]);
+					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][4]+" n2: "+log[i][7]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
@@ -266,8 +280,11 @@ public class SimulatorLauncher {
 			}
 			break;
 		}
+		logFrm.log(" ");
 		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file MM1PRIO.csv");
 		Utility.createCSVFile("MM1PRIO", null, log);
+		long tempo = System.currentTimeMillis()-ora;
+		logFrm.log("Durata Simulazione: "+(tempo*1.0/1000)+" secondi");
 	}
 	
 	
@@ -275,8 +292,9 @@ public class SimulatorLauncher {
 		long ora = System.currentTimeMillis();
 		double step = 8.0/(mu*nClasses);
 		double[][] log = new double[nClasses][2];
-		double [][] res = new MM1SJNsimulator(N, rho, mu, nSim, nClasses).run();
+		double [][] res = new MM1SJNsimulator(N, rho, mu, nSim, nClasses,logFrm).run();
 		double[] partial = new double[nSim];
+		
 		for(int k=0; k<nClasses; k++){
 			for(int j=0; j<nSim; j++)
 				partial[j]=res[j][k];
@@ -286,10 +304,10 @@ public class SimulatorLauncher {
 			log[k][1]= media;
 			
 		}
-		
-		Utility.createCSVFile("test", null, log);
-		System.out.println("finito!");
+		logFrm.log(" ");
+		Utility.createCSVFile("MM1SJN", null, log);
+		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file MM1SJN.csv");
 		long tempo = System.currentTimeMillis()-ora;
-		System.out.println("Tempo totale "+(tempo*1.0/1000)/60+" minuti");
+		logFrm.log("Durata Simulazione: "+(tempo*1.0/1000)+" secondi");
 	}
 }
