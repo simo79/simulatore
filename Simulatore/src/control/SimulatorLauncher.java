@@ -7,6 +7,7 @@ import model.enumerators.CaseClasses;
 import model.enumerators.DistributionType;
 import control.engine.MG1PRIOsimulator;
 import control.engine.MG1simulator;
+import control.engine.MM1SJNsimulator;
 import control.engine.NumbersGenerator;
 import control.engine.TrafficGenerator;
 /**
@@ -30,7 +31,7 @@ public class SimulatorLauncher {
 	public static void lauchSimulation1_1(int minN, int maxN, int passoN, double confidenceLevel, LogForm logFrm){
 		logFrm.reset();
 		double[][] fileContent = new NumbersGenerator(minN, maxN, passoN, confidenceLevel,logFrm).run();
-		Utility.createCSVFile("GenNCasuali",null, fileContent);
+		Utility.createCSVFile("GenNCasuali_Nvariabile",null, fileContent);
 		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file GenNCasuali.csv");
 		logFrm.refresh();
 	}
@@ -46,7 +47,7 @@ public class SimulatorLauncher {
 	public static void lauchSimulation1_2(int N, double minValueConfidenza,double maxValueConfidenza,double passoConfidenza , LogForm logFrm){
 		logFrm.reset();
 		double[][] fileContent = new NumbersGenerator(N,minValueConfidenza,maxValueConfidenza, passoConfidenza,logFrm).run();
-		Utility.createCSVFile("GenNCasuali",null, fileContent);
+		Utility.createCSVFile("GenNCasuali_Confvariabile",null, fileContent);
 		logFrm.log("I valori ricavati dalle simulazioni sono riportati sul file GenNCasuali.csv");
 		logFrm.refresh();
 	}
@@ -82,7 +83,7 @@ public class SimulatorLauncher {
 		double step = 1.0/(values+1);
 		double rho=step;
 		double lambdaArr;
-		double[][] log = new double[values][3];
+		double[][] log = new double[values][4];
 		int i=0;
 		logFrm.getJPBstatus().setMaximum(values);
 		DecimalFormat f = new DecimalFormat("#####.########");
@@ -95,7 +96,8 @@ public class SimulatorLauncher {
 				logFrm.log("rho: "+rho+" media: "+media+" semi_amp: "+semiAmp);
 				log[i][0]= rho;
 				log[i][1]=media;
-				log[i][2]=semiAmp;
+				log[i][2]=media-semiAmp;
+				log[i][3]=media+semiAmp;
 				i++;
 				rho+=step;
 				rho=f.parse(f.format(rho)).doubleValue();
@@ -268,25 +270,26 @@ public class SimulatorLauncher {
 		Utility.createCSVFile("MM1PRIO", null, log);
 	}
 	
-	/*
-	public static void lauchSimulation5(int N, int nSim,int ncl CaseClasses caseC,int xVal, double rho, double mu, LogForm logFrm){
-		int nSim = 50;
-
-		double[][] log = new double[ncl][2];
-		double[][] result = new MM1SJNsimulator(1000, 0.8, 1, nSim).run();
+	
+	public static void lauchSimulation5(int N, int nSim,int nClasses, double rho, double mu, LogForm logFrm){
+		long ora = System.currentTimeMillis();
+		double step = 8.0/(mu*nClasses);
+		double[][] log = new double[nClasses][2];
+		double [][] res = new MM1SJNsimulator(N, rho, mu, nSim, nClasses).run();
 		double[] partial = new double[nSim];
-		double step= 2.0/ncl;
-		double x=step;
-		for(int k=0; k<ncl; k++){
-			log[k][0] = x;
+		for(int k=0; k<nClasses; k++){
 			for(int j=0; j<nSim; j++)
-				partial[j]=result[j][k];
-			double media = Utility.mediaCamp(partial); 
-			
+				partial[j]=res[j][k];
+			double media = Utility.mediaCamp(partial);
+			double k1 = k*step;
+			log[k][0]= k1;
 			log[k][1]= media;
-			x+=step;
+			
 		}
 		
-		Utility.createCSVFile("SJN", null, log);
-	}*/
+		Utility.createCSVFile("test", null, log);
+		System.out.println("finito!");
+		long tempo = System.currentTimeMillis()-ora;
+		System.out.println("Tempo totale "+(tempo*1.0/1000)/60+" minuti");
+	}
 }
