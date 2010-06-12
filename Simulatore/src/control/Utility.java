@@ -81,8 +81,8 @@ public class Utility {
 	 * @param table matrice di double contenente i valori da inserire nel file
 	 */
 	public static void createCSVFile(String fileName,String[] intestazione, double[][] table){
-		NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
-		nf.setMinimumFractionDigits(10);
+		//NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
+		//nf.setMinimumFractionDigits(10);
 		File file = new File(fileName+".csv");
 		try{
 			FileWriter fileWriter = new FileWriter(file);
@@ -102,7 +102,7 @@ public class Utility {
 			for(int i=0;i<table.length;i++){
 				//Scorro le colonne
 				for(int k=0;k<table[i].length;k++){
-					lineBuffer += nf.format(table[i][k]); 
+					lineBuffer += table[i][k]; 
 					if(k<table[i].length-1)
 						lineBuffer+=separatore;
 				}
