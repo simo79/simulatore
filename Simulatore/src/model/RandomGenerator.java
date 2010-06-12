@@ -65,7 +65,7 @@ public class RandomGenerator {
 			break;
 		case Pareto:
 			this.alpha = param[1];
-			this.k =((1/param[0])*(alpha-1))/alpha;
+			this.k =((1.0/param[0])*(alpha-1))/alpha;
 			break;
 		case SPP:
 			lambdaMed=param[0];
@@ -97,7 +97,7 @@ public class RandomGenerator {
 			break;
 		case Pareto:
 			double y = rnd.nextDouble();
-			rndValue = k / Math.pow(1-y,1/alpha);
+			rndValue = k / Math.pow(1-y,1.0/alpha);
 			break;
 		case SPP:
 			//Nuovo arrivo
