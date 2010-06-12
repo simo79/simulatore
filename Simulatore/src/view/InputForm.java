@@ -116,7 +116,7 @@ public class InputForm {
 	private JFrame getJFmainFrame() {
 		if (jFmainFrame == null) {
 			jFmainFrame = new JFrame();
-			jFmainFrame.setSize(new Dimension(255, 690));
+			jFmainFrame.setSize(new Dimension(270, 690));
 			jFmainFrame.setTitle("Simulatore");
 			jFmainFrame.setResizable(false);
 			jFmainFrame.setJMenuBar(getJJMBmainMenu());
@@ -149,7 +149,7 @@ public class InputForm {
 	public JComboBox getJCBcase() {
 		if (jCBcase == null) {
 			jCBcase = new JComboBox(CaseClasses.values());
-			jCBcase.setBounds(new Rectangle(5, 410, 230, 23));
+			jCBcase.setBounds(new Rectangle(15, 410, 230, 23));
 		}
 		return jCBcase;
 	}
@@ -162,7 +162,7 @@ public class InputForm {
 		if (jBstart == null) {
 			jBstart = new JButton();
 			jBstart.setText("Start");
-			jBstart.setBounds(new Rectangle(5, 6, 240, 26));
+			jBstart.setBounds(new Rectangle(15, 6, 240, 26));
 			jBstart.addActionListener(new JBstartListener(this));
 		}
 		return jBstart;
@@ -179,7 +179,7 @@ public class InputForm {
 		if (jLfrequenza == null) {
 			jLfrequenza = new JLabel();
 			jLfrequenza.setText("lambda:");
-			jLfrequenza.setBounds(new Rectangle(12, 50, 100, 20));
+			jLfrequenza.setBounds(new Rectangle(12, 50, 130, 20));
 		}
 		return jLfrequenza;
 	}
@@ -192,7 +192,7 @@ public class InputForm {
 		if (jLalpha == null) {
 			jLalpha = new JLabel();
 			jLalpha.setText("alpha:");
-			jLalpha.setBounds(new Rectangle(12, 75, 100, 20));
+			jLalpha.setBounds(new Rectangle(12, 75, 130, 20));
 			jLalpha.setEnabled(false);
 		}
 		return jLalpha;
@@ -206,7 +206,7 @@ public class InputForm {
 		if (jLrapporto == null) {
 			jLrapporto = new JLabel();
 			jLrapporto.setText("rapporto:");
-			jLrapporto.setBounds(new Rectangle(12, 100, 100, 20));
+			jLrapporto.setBounds(new Rectangle(12, 100, 130, 20));
 			jLrapporto.setEnabled(false);
 		}
 		return jLrapporto;
@@ -220,7 +220,7 @@ public class InputForm {
 		if (jLq01 == null) {
 			jLq01 = new JLabel();
 			jLq01.setText("q01:");
-			jLq01.setBounds(new Rectangle(12, 125, 100, 20));
+			jLq01.setBounds(new Rectangle(12, 125, 130, 20));
 			jLq01.setEnabled(false);
 		}
 		return jLq01;
@@ -234,7 +234,7 @@ public class InputForm {
 		if (jLq10 == null) {
 			jLq10 = new JLabel();
 			jLq10.setText("q10:");
-			jLq10.setBounds(new Rectangle(12, 150, 100, 20));
+			jLq10.setBounds(new Rectangle(12, 150, 130, 20));
 			jLq10.setEnabled(false);
 		}
 		return jLq10;
@@ -243,7 +243,7 @@ public class InputForm {
 	private JLabel getJLT(){
 		if (jLT == null) {
 			jLT = new JLabel();
-			jLT.setBounds(new Rectangle(12, 95, 120, 20));
+			jLT.setBounds(new Rectangle(10, 95, 130, 20));
 			jLT.setText("T:");
 			jLT.setEnabled(false);
 		}
@@ -253,8 +253,8 @@ public class InputForm {
 	private JLabel getjLnumSim(){
 		if(jLnumSim==null){
 			jLnumSim = new JLabel();
-			jLnumSim.setText("Numero Simulazioni:");
-			jLnumSim.setBounds(new Rectangle(12, 20, 120, 20));
+			jLnumSim.setText("numero simulazioni:");
+			jLnumSim.setBounds(new Rectangle(10, 20, 130, 20));
 		}
 		return jLnumSim;
 	}
@@ -267,7 +267,7 @@ public class InputForm {
 		if (jLconfidenceLevel == null) {
 			jLconfidenceLevel = new JLabel();
 			jLconfidenceLevel.setText("livello confidenza:");
-			jLconfidenceLevel.setBounds(new Rectangle(12, 70, 120, 20));
+			jLconfidenceLevel.setBounds(new Rectangle(10, 70, 130, 20));
 		}
 		return jLconfidenceLevel;
 	}
@@ -280,7 +280,7 @@ public class InputForm {
 		if(jLN == null){
 			jLN = new JLabel();
 			jLN.setText("N:");
-			jLN.setBounds(new Rectangle(12, 45, 120, 20));
+			jLN.setBounds(new Rectangle(10, 45, 130, 20));
 		}
 		return jLN;
 	}
@@ -293,7 +293,7 @@ public class InputForm {
 		if (jLvalues == null) {
 			jLvalues = new JLabel();
 			jLvalues.setText("valori in (0,1):");
-			jLvalues.setBounds(new Rectangle(12, 120, 120, 20));
+			jLvalues.setBounds(new Rectangle(10, 120, 130, 20));
 			jLvalues.setEnabled(false);
 		}
 		return jLvalues;
@@ -301,7 +301,7 @@ public class InputForm {
 	private JLabel getJLtrattino(){
 		if(jLtrattino==null){
 			jLtrattino = new JLabel();
-			jLtrattino.setBounds(new Rectangle(179, 68, 9, 10));
+			jLtrattino.setBounds(new Rectangle(190, 68, 9, 10));
 			jLtrattino.setText("-");
 		}
 		return jLtrattino;
@@ -309,7 +309,7 @@ public class InputForm {
 	private JLabel getJLrange(){
 		if(jLrange==null){
 			jLrange = new JLabel();
-			jLrange.setBounds(new Rectangle(15, 65, 109, 20));
+			jLrange.setBounds(new Rectangle(10, 65, 120, 20));
 			jLrange.setText("range confidenza:");
 		}
 		return jLrange;
@@ -317,7 +317,7 @@ public class InputForm {
 	private JLabel getJLpasso(){
 		if(jLpasso==null){
 			jLpasso = new JLabel();
-			jLpasso.setBounds(new Rectangle(16, 90, 109, 20));
+			jLpasso.setBounds(new Rectangle(10, 90, 120, 20));
 			jLpasso.setText("passo:");
 		}
 		return jLpasso;
@@ -325,7 +325,7 @@ public class InputForm {
 	private JLabel getJLvalVicolato(){
 		if(jLvalVicolato==null){
 			jLvalVicolato = new JLabel();
-			jLvalVicolato.setBounds(new Rectangle(15, 115, 109, 20));
+			jLvalVicolato.setBounds(new Rectangle(10, 115, 120, 20));
 			jLvalVicolato.setText("N:");
 		}
 		return jLvalVicolato;
@@ -339,7 +339,7 @@ public class InputForm {
 		if (jLrho == null) {
 			jLrho = new JLabel();
 			jLrho.setText("rho:");
-			jLrho.setBounds(new Rectangle(12, 20, 100, 20));
+			jLrho.setBounds(new Rectangle(12, 20, 130, 20));
 		}
 		return jLrho;
 	}
@@ -355,7 +355,7 @@ public class InputForm {
 		if (jTFfrequenza == null) {
 			jTFfrequenza = new JTextField();
 			jTFfrequenza.setText("1");
-			jTFfrequenza.setBounds(new Rectangle(140, 50, 90, 20));
+			jTFfrequenza.setBounds(new Rectangle(150, 50, 100, 20));
 			jTFfrequenza.setEnabled(true);
 		}
 		return jTFfrequenza;
@@ -369,7 +369,7 @@ public class InputForm {
 		if (jTFalpha == null) {
 			jTFalpha = new JTextField();
 			jTFalpha.setText("3");
-			jTFalpha.setBounds(new Rectangle(140, 75, 90, 20));
+			jTFalpha.setBounds(new Rectangle(150, 75, 100, 20));
 			jTFalpha.setEnabled(false);
 		}
 		return jTFalpha;
@@ -383,7 +383,7 @@ public class InputForm {
 		if (jTFrapp == null) {
 			jTFrapp = new JTextField();
 			jTFrapp.setText("10");
-			jTFrapp.setBounds(new Rectangle(140, 100, 90, 20));
+			jTFrapp.setBounds(new Rectangle(150, 100, 100, 20));
 			jTFrapp.setEnabled(false);
 		}
 		return jTFrapp;
@@ -397,7 +397,7 @@ public class InputForm {
 		if (jTFg10 == null) {
 			jTFg10 = new JTextField();
 			jTFg10.setText("0.5");
-			jTFg10.setBounds(new Rectangle(140, 150, 90, 20));
+			jTFg10.setBounds(new Rectangle(150, 150, 100, 20));
 			jTFg10.setEnabled(false);		
 		}
 		return jTFg10;
@@ -411,7 +411,7 @@ public class InputForm {
 		if (jTFg01 == null) {
 			jTFg01 = new JTextField();
 			jTFg01.setText("0.5");
-			jTFg01.setBounds(new Rectangle(140, 125, 90, 20));
+			jTFg01.setBounds(new Rectangle(150, 125, 100, 20));
 			jTFg01.setEnabled(false);
 		}
 		return jTFg01;
@@ -424,7 +424,7 @@ public class InputForm {
 	public JTextField getJTFN() {
 		if (jTFN == null) {
 			jTFN = new JTextField();
-			jTFN.setBounds(new Rectangle(138, 45, 90, 20));
+			jTFN.setBounds(new Rectangle(150, 45, 100, 20));
 			jTFN.setText("60");
 		}
 		return jTFN;
@@ -438,7 +438,7 @@ public class InputForm {
 		if (jTFnumSim == null) {
 			jTFnumSim = new JTextField();
 			jTFnumSim.setText("30");
-			jTFnumSim.setBounds(new Rectangle(137, 20, 90, 20));
+			jTFnumSim.setBounds(new Rectangle(150, 20, 100, 20));
 		}
 		return jTFnumSim;
 	}
@@ -450,7 +450,7 @@ public class InputForm {
 	public JTextField getJTFT() {
 		if (jTFT == null) {
 			jTFT = new JTextField();
-			jTFT.setBounds(new Rectangle(138, 95, 90, 20));
+			jTFT.setBounds(new Rectangle(150, 95, 100, 20));
 			jTFT.setText("30");
 			jTFT.setEnabled(false);
 		}
@@ -464,7 +464,7 @@ public class InputForm {
 	public JTextField getJTFconfidenceLevel() {
 		if (jTFconfidenceLevel == null) {
 			jTFconfidenceLevel = new JTextField();
-			jTFconfidenceLevel.setBounds(new Rectangle(138, 70, 90, 20));
+			jTFconfidenceLevel.setBounds(new Rectangle(150, 70, 100, 20));
 			jTFconfidenceLevel.setText("0.975");
 		}
 		return jTFconfidenceLevel;
@@ -477,7 +477,7 @@ public class InputForm {
 	public JTextField getJTFminRange() {
 		if (jTFminRange == null) {
 			jTFminRange = new JTextField();
-			jTFminRange.setBounds(new Rectangle(134, 65, 40, 20));
+			jTFminRange.setBounds(new Rectangle(140, 65, 50, 20));
 		}
 		return jTFminRange;
 	}
@@ -489,7 +489,7 @@ public class InputForm {
 	public JTextField getJTFmaxRange() {
 		if (jTFmaxRange == null) {
 			jTFmaxRange = new JTextField();
-			jTFmaxRange.setBounds(new Rectangle(191, 65, 40, 20));
+			jTFmaxRange.setBounds(new Rectangle(200, 65, 50, 20));
 		}
 		return jTFmaxRange;
 	}
@@ -501,7 +501,7 @@ public class InputForm {
 	public JTextField getJTFpasso() {
 		if (jTFpasso == null) {
 			jTFpasso = new JTextField();
-			jTFpasso.setBounds(new Rectangle(134, 90, 40, 20));
+			jTFpasso.setBounds(new Rectangle(140, 90, 50, 20));
 		}
 		return jTFpasso;
 	}
@@ -513,7 +513,7 @@ public class InputForm {
 	public JTextField getJTFvaloreVicolato() {
 		if (jTFvaloreVicolato == null) {
 			jTFvaloreVicolato = new JTextField();
-			jTFvaloreVicolato.setBounds(new Rectangle(134, 115, 40, 20));
+			jTFvaloreVicolato.setBounds(new Rectangle(140, 115, 50, 20));
 		}
 		return jTFvaloreVicolato;
 	}
@@ -525,7 +525,7 @@ public class InputForm {
 	public JTextField getJTFrho() {
 		if (jTFrho == null) {
 			jTFrho = new JTextField();
-			jTFrho.setBounds(new Rectangle(140, 20, 90, 20));
+			jTFrho.setBounds(new Rectangle(150, 20, 100, 20));
 			jTFrho.setText("1");
 		}
 		return jTFrho;
@@ -538,7 +538,7 @@ public class InputForm {
 	public JTextField getJTFvalues() {
 		if (jTFvalues == null) {
 			jTFvalues = new JTextField();
-			jTFvalues.setBounds(new Rectangle(138, 120, 90, 20));
+			jTFvalues.setBounds(new Rectangle(150, 120, 100, 20));
 			jTFvalues.setText("10");
 			jTFvalues.setEnabled(false);
 		}
@@ -572,7 +572,7 @@ public class InputForm {
 			jPdistribution = new JPanel();
 			jPdistribution.setLayout(null);
 			jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Parametri Distribuzione", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
-			jPdistribution.setBounds(new Rectangle(0, 155, 240, 190));
+			jPdistribution.setBounds(new Rectangle(0, 155, 260, 190));
 			jPdistribution.add(getJCBdistrSelector(), null);
 			jPdistribution.add(getJLfrequenza(), null);
 			jPdistribution.add(getJLalpha(), null);
@@ -598,7 +598,7 @@ public class InputForm {
 			jPsimulation.setLayout(null);
 			jPsimulation.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Parametri Simulazione Costanti", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 			//Aggiunta Elementi
-			jPsimulation.setBounds(new Rectangle(0, 0, 240, 150));
+			jPsimulation.setBounds(new Rectangle(0, 0, 260, 150));
 			jPsimulation.add(getJLT(), null);
 			jPsimulation.add(getJTFN(), null);
 			jPsimulation.add(getJTFT(), null);
@@ -623,7 +623,7 @@ public class InputForm {
 			groupRBvincola=new ButtonGroup();
 			jPparSimVariabili = new JPanel();
 			jPparSimVariabili.setLayout(null);
-			jPparSimVariabili.setBounds(new Rectangle(5, 44, 240, 147));
+			jPparSimVariabili.setBounds(new Rectangle(5, 44, 260, 147));
 			jPparSimVariabili.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Parametri Simulazione Variabili", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 			//Aggiunta Elementi
 			jPparSimVariabili.add(getJRBvincolaN(), null);
@@ -648,7 +648,7 @@ public class InputForm {
 		if (jPhide == null) {
 			jPhide = new JPanel();
 			jPhide.setLayout(null);
-			jPhide.setBounds(new Rectangle(5, 194, 240, 441));
+			jPhide.setBounds(new Rectangle(5, 194, 260, 441));
 			jPhide.add(getJPservizio(), null);
 			jPhide.add(getJPdistribution(), null);
 			jPhide.add(getJPsimulation(), null);
@@ -666,7 +666,7 @@ public class InputForm {
 			jPservizio = new JPanel();
 			jPservizio.setLayout(null);
 			jPservizio.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Utilizzazione", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
-			jPservizio.setBounds(new Rectangle(0, 350, 240, 50));
+			jPservizio.setBounds(new Rectangle(0, 350, 260, 50));
 			jPservizio.add(getJLrho(), null);
 			jPservizio.add(getJTFrho(), null);
 		}
@@ -826,7 +826,7 @@ public class InputForm {
 					jCBdistrSelector.setEditable(false);
 					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione Traffico", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 					//Impostazioni Visualizzazione Form/Pannelli
-					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width, 445));
+					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width, 440));
 					jPparSimVariabili.setVisible(false);
 					jPhide.setVisible(true);
 					
@@ -854,7 +854,7 @@ public class InputForm {
 					jCBdistrSelector.setSelectedItem(DistributionType.Exponential);
 					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione del Servizio", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 					//Impostazioni Visualizzazione Form/Pannelli
-					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,445));
+					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,440));
 					jPparSimVariabili.setVisible(false);
 					jPhide.setVisible(true);
 				}
@@ -894,12 +894,13 @@ public class InputForm {
 					jLT.setEnabled(false);
 					jTFT.setEnabled(false);
 					//Disabilito il campo values
-					jLvalues.setEnabled(false);
-					jTFvalues.setEnabled(false);
+					jLvalues.setEnabled(true);
+					jTFvalues.setEnabled(true);
+					jLvalues.setText("Classi");
 					//Impostazione titolo pannello distribuzione
 					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione Degli Arrivi", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 					//Impostazioni Visualizzazione Form/Pannelli
-					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,500));
+					jFmainFrame.setSize(new Dimension(getJFmainFrame().getSize().width,495));
 					jPparSimVariabili.setVisible(false);
 					jPhide.setVisible(true);
 				}
@@ -999,7 +1000,7 @@ public class InputForm {
 	private JRadioButton getJRBvincolaN() {
 		if (jRBvincolaN == null) {
 			jRBvincolaN = new JRadioButton();
-			jRBvincolaN.setBounds(new Rectangle(10, 22, 83, 21));
+			jRBvincolaN.setBounds(new Rectangle(5, 20, 150, 20));
 			jRBvincolaN.setText(CostraintValue.VincolaN.toString());
 			groupRBvincola.add(jRBvincolaN);
 			jRBvincolaN.setSelected(true);
@@ -1015,7 +1016,7 @@ public class InputForm {
 	private JRadioButton getJRBvincolaConfidenza() {
 		if (jRBvincolaConfidenza == null) {
 			jRBvincolaConfidenza = new JRadioButton();
-			jRBvincolaConfidenza.setBounds(new Rectangle(10, 40, 138, 21));
+			jRBvincolaConfidenza.setBounds(new Rectangle(5, 40, 150, 20));
 			jRBvincolaConfidenza.setText(CostraintValue.VincolaConfidenza.toString());
 			groupRBvincola.add(jRBvincolaConfidenza);
 			jRBvincolaConfidenza.addActionListener(new JRBvincolaListener(this));
