@@ -107,6 +107,7 @@ public class LogForm {
 	
 	public void reset(){
 		model = new DefaultListModel();
+		jPBstatus.setValue(0);
 	}
 	
 	public void refresh(){
