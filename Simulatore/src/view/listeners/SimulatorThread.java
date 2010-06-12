@@ -71,7 +71,12 @@ public class SimulatorThread extends Thread {
 			SimulatorLauncher.lauchSimulation4(N,nSim,caseC,xValues,rho,param[0],form.getLog());
 		}
 		if(form.getSelectedPerspective()==GuiPerspective.Esercitazione4){
-			
+			int N = Integer.parseInt(form.getJTFN().getText());
+			int nSim = Integer.parseInt(form.getJTFnumSim().getText());
+			int nClasses = Integer.parseInt(form.getJTFvalues().getText());
+			double[] param = form.getDistributionParameters();
+			double rho = Double.parseDouble(form.getJTFrho().getText());
+			SimulatorLauncher.lauchSimulation5(N, nSim, nClasses, rho, param[0], form.getLog());
 		}
 		form.getLog().refresh();
 	}
