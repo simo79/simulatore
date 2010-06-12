@@ -164,7 +164,7 @@ public class SimulatorLauncher {
 						log[i][3*k+3]= media+semi;
 						
 					}
-					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][2]);
+					logFrm.log("x: "+x+" n0: "+log[i][1]+" n1: "+log[i][4]);
 					i++;
 					logFrm.getJPBstatus().setValue(i);
 					x+=step;
@@ -288,10 +288,10 @@ public class SimulatorLauncher {
 	}
 	
 	
-	public static void lauchSimulation5(int N, int nSim,int nClasses, double rho, double mu, LogForm logFrm){
+	public static void lauchSimulation5(int N, int nSim,int nClasses,double levelOfConfidence, double rho, double mu, LogForm logFrm){
 		long ora = System.currentTimeMillis();
 		double step = 8.0/(mu*nClasses);
-		double[][] log = new double[nClasses][2];
+		double[][] log = new double[nClasses][4];
 		double [][] res = new MM1SJNsimulator(N, rho, mu, nSim, nClasses,logFrm).run();
 		double[] partial = new double[nSim];
 		
@@ -299,9 +299,12 @@ public class SimulatorLauncher {
 			for(int j=0; j<nSim; j++)
 				partial[j]=res[j][k];
 			double media = Utility.mediaCamp(partial);
+			double semiAmp = Utility.semiAmpiezza(partial, levelOfConfidence);
 			double k1 = k*step;
 			log[k][0]= k1;
 			log[k][1]= media;
+			log[k][2]= media-semiAmp;
+			log[k][3]= media+semiAmp;
 			
 		}
 		logFrm.log(" ");
