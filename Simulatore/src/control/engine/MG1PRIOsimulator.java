@@ -71,7 +71,7 @@ public class MG1PRIOsimulator {
 		rndArrivi = new RandomGenerator[nClasses];
 		
 		for(int i=0; i<nClasses; i++){
-			rndArrivi[i]=new RandomGenerator(DistributionType.Exponential, new double[]{rho[i]/mu});
+			rndArrivi[i]=new RandomGenerator(DistributionType.Exponential, new double[]{rho[i]*mu});
 			priorityQueues.add(i, new PriorityQueue<PriorityQueueElement>());
 		}
 	}
