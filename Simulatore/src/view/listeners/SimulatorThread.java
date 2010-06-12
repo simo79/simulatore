@@ -77,7 +77,8 @@ public class SimulatorThread extends Thread {
 			int nClasses = Integer.parseInt(form.getJTFvalues().getText());
 			double[] param = form.getDistributionParameters();
 			double rho = Double.parseDouble(form.getJTFrho().getText());
-			SimulatorLauncher.lauchSimulation5(N, nSim, nClasses, rho, param[0], form.getLog());
+			double confidenceLevel = Double.parseDouble(form.getJTFconfidenceLevel().getText());
+			SimulatorLauncher.lauchSimulation5(N, nSim, nClasses,confidenceLevel, rho, param[0], form.getLog());
 		}
 		form.getLog().refresh();
 	}
