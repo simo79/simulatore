@@ -121,16 +121,18 @@ public class NumbersGenerator {
 			// Tengo costante N vario il livello di confidenza
 			levelOfConfidence = minConfidence;
 			double[] result = new double[N];
-			fileContent = new double[nSim][3];
+			fileContent = new double[nSim][4];
 			int k = 0;
 			while (k < nSim) {
 				for (int i = 0; i < N; i++) {
 					result[i] = rnd.nextDouble();
 				}
 				fileContent[k][0] = levelOfConfidence;
-				fileContent[k][1] = Utility.mediaCamp(result);
-				fileContent[k][2] = Utility.semiAmpiezza(result,
-						levelOfConfidence);
+				double media = Utility.mediaCamp(result);
+				double semiAmp = Utility.semiAmpiezza(result,levelOfConfidence);
+				fileContent[k][1] = media;
+				fileContent[k][2] = media-semiAmp;
+				fileContent[k][3] = media+semiAmp;
 				levelOfConfidence += stepConfidence;
 				result = new double[N];
 				k++;
@@ -142,17 +144,18 @@ public class NumbersGenerator {
 			// Tengo costante N vario il vivello di confidenza
 			N = minN;
 			double[] result = new double[N];
-			fileContent = new double[nSim][3];
+			fileContent = new double[nSim][4];
 			int k = 0;
 			while (k < nSim) {
 				for (int i = 0; i < N; i++) {
 					result[i] = rnd.nextDouble();
 				}
 				fileContent[k][0] = N;
-				fileContent[k][1] = Utility.mediaCamp(result);
-				fileContent[k][2] = Utility.semiAmpiezza(result,
-						levelOfConfidence);
-
+				double media = Utility.mediaCamp(result);
+				double semiAmp = Utility.semiAmpiezza(result,levelOfConfidence);
+				fileContent[k][1] = media;
+				fileContent[k][2] = media-semiAmp;
+				fileContent[k][3] = media+semiAmp;
 				N += stepN;
 				result = new double[N];
 				k++;
