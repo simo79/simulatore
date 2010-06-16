@@ -2,7 +2,7 @@ package control.engine;
 
 import java.util.Vector;
 import java.util.PriorityQueue;
-
+ 
 import view.LogForm;
 
 import model.EventNotice;
@@ -109,7 +109,7 @@ public class MM1SJNsimulator {
 	 * 
 	 * Avvia la simulazione del sistema.
 	 * 
-	 * @return matrice di tempi medi spesi in coda per ogni classe di priorità (il valore è definito da codice pari a 40) per ogni step di simulazione
+	 * @return matrice di tempi medi spesi in coda per ogni classe di prioritÔøΩ (il valore ÔøΩ definito da codice pari a 40) per ogni step di simulazione
 	 */
 	public double[][] run(){
 		int step=0;
@@ -168,10 +168,10 @@ public class MM1SJNsimulator {
 	}
 	
 	/**
-	 * Metodo per la determinazione della classe di priorità in funzione del tempo di servizio
+	 * Metodo per la determinazione della classe di prioritÔøΩ in funzione del tempo di servizio
 	 * 
 	 * @param theta tempo di servizio
-	 * @return classe di priorità relativa al tempo di servizio indicato
+	 * @return classe di prioritÔøΩ relativa al tempo di servizio indicato
 	 */
 	private int calcClassPriority(double theta){
 	
