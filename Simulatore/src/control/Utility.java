@@ -2,8 +2,6 @@ package control;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 import org.apache.commons.math.MathException;
 import org.apache.commons.math.distribution.TDistributionImpl;
