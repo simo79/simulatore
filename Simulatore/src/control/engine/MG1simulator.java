@@ -1,7 +1,6 @@
 package control.engine;
 
 import java.util.PriorityQueue;
-
 import model.EventNotice;
 import model.RandomGenerator;
 import model.enumerators.DistributionType;
