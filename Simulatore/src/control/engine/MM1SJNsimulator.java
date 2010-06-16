@@ -1,6 +1,5 @@
 package control.engine;
 
-import java.util.Vector;
 import java.util.PriorityQueue;
  
 import view.LogForm;
@@ -145,7 +144,6 @@ public class MM1SJNsimulator {
 					totDeparture++;
 					classDeparture[calcClassPriority(e.getServiceTime())]++;
 					if (totUser > 0) {
-						int j = 0;
 						SJNPriorityQueueElement elem = priorityQueue.poll();
 						totWait = totWait + (now - elem.getOccurrenceTime());
 						wait[calcClassPriority(elem.getServiceTime())] += (now -elem.getOccurrenceTime());
@@ -161,8 +159,8 @@ public class MM1SJNsimulator {
 				else
 					results[step][i]=wait[i]/classArrival[i];
 			}
-			logFrm.getJPBstatus().setValue(step);
 			step++;
+			logFrm.getJPBstatus().setValue(step);
 		}
 		return results;
 	}
