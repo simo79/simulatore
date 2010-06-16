@@ -354,7 +354,6 @@ public class InputForm {
 	private JTextField getJTFfrequenza() {
 		if (jTFfrequenza == null) {
 			jTFfrequenza = new JTextField();
-			jTFfrequenza.setText("1");
 			jTFfrequenza.setBounds(new Rectangle(150, 50, 100, 20));
 			jTFfrequenza.setEnabled(true);
 		}
@@ -368,7 +367,6 @@ public class InputForm {
 	private JTextField getJTFalpha() {
 		if (jTFalpha == null) {
 			jTFalpha = new JTextField();
-			jTFalpha.setText("3");
 			jTFalpha.setBounds(new Rectangle(150, 75, 100, 20));
 			jTFalpha.setEnabled(false);
 		}
@@ -382,7 +380,6 @@ public class InputForm {
 	private JTextField getJTFrapp() {
 		if (jTFrapp == null) {
 			jTFrapp = new JTextField();
-			jTFrapp.setText("10");
 			jTFrapp.setBounds(new Rectangle(150, 100, 100, 20));
 			jTFrapp.setEnabled(false);
 		}
@@ -396,7 +393,6 @@ public class InputForm {
 	private JTextField getJTFq10() {
 		if (jTFg10 == null) {
 			jTFg10 = new JTextField();
-			jTFg10.setText("0.5");
 			jTFg10.setBounds(new Rectangle(150, 150, 100, 20));
 			jTFg10.setEnabled(false);		
 		}
@@ -410,7 +406,6 @@ public class InputForm {
 	private JTextField getJTFq01() {
 		if (jTFg01 == null) {
 			jTFg01 = new JTextField();
-			jTFg01.setText("0.5");
 			jTFg01.setBounds(new Rectangle(150, 125, 100, 20));
 			jTFg01.setEnabled(false);
 		}
@@ -425,7 +420,6 @@ public class InputForm {
 		if (jTFN == null) {
 			jTFN = new JTextField();
 			jTFN.setBounds(new Rectangle(150, 45, 100, 20));
-			jTFN.setText("60");
 		}
 		return jTFN;
 	}
@@ -437,7 +431,6 @@ public class InputForm {
 	public JTextField getJTFnumSim() {
 		if (jTFnumSim == null) {
 			jTFnumSim = new JTextField();
-			jTFnumSim.setText("30");
 			jTFnumSim.setBounds(new Rectangle(150, 20, 100, 20));
 		}
 		return jTFnumSim;
@@ -451,7 +444,6 @@ public class InputForm {
 		if (jTFT == null) {
 			jTFT = new JTextField();
 			jTFT.setBounds(new Rectangle(150, 95, 100, 20));
-			jTFT.setText("30");
 			jTFT.setEnabled(false);
 		}
 		return jTFT;
@@ -465,7 +457,6 @@ public class InputForm {
 		if (jTFconfidenceLevel == null) {
 			jTFconfidenceLevel = new JTextField();
 			jTFconfidenceLevel.setBounds(new Rectangle(150, 70, 100, 20));
-			jTFconfidenceLevel.setText("0.975");
 		}
 		return jTFconfidenceLevel;
 	}
@@ -526,7 +517,6 @@ public class InputForm {
 		if (jTFrho == null) {
 			jTFrho = new JTextField();
 			jTFrho.setBounds(new Rectangle(150, 20, 100, 20));
-			jTFrho.setText("1");
 		}
 		return jTFrho;
 	}
@@ -539,7 +529,6 @@ public class InputForm {
 		if (jTFvalues == null) {
 			jTFvalues = new JTextField();
 			jTFvalues.setBounds(new Rectangle(150, 120, 100, 20));
-			jTFvalues.setText("10");
 			jTFvalues.setEnabled(false);
 		}
 		return jTFvalues;
@@ -821,7 +810,6 @@ public class InputForm {
 					jTFvalues.setEnabled(false);
 					jCBdistrSelector.setSelectedItem(DistributionType.Exponential);
 					jLfrequenza.setText("lambda:");
-					jTFalpha.setText("3");
 					jCBdistrSelector.setEnabled(true);
 					jCBdistrSelector.setEditable(false);
 					jPdistribution.setBorder(new TitledBorder(new LineBorder(Color.black, 1, false),"Distribuzione Traffico", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
@@ -848,7 +836,6 @@ public class InputForm {
 					jTFvalues.setEnabled(true);
 					
 					jLfrequenza.setText("mu:");
-					jTFalpha.setText("2.5");
 					jCBdistrSelector.setEnabled(true);
 					jCBdistrSelector.setEditable(false);
 					jCBdistrSelector.setSelectedItem(DistributionType.Exponential);
