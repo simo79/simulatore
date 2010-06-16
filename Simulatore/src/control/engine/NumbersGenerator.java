@@ -2,8 +2,6 @@ package control.engine;
 
 import java.util.Random;
 
-import org.apache.commons.math.random.MersenneTwister;
-
 import view.LogForm;
 
 import control.Utility;
