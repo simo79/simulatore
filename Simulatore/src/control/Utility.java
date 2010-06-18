@@ -51,7 +51,7 @@ public class Utility {
 		TDistributionImpl td = new TDistributionImpl(values.length-1);
 		double ts = 0;
 		try{
-			ts = td.inverseCumulativeProbability(levelOfConfidence);
+			ts = td.inverseCumulativeProbability( (1-(1-levelOfConfidence)/2) );
 		}catch (MathException e) {
 			System.out.println("Errore calcolo semiampiezza");
 		}
