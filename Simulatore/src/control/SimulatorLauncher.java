@@ -68,7 +68,8 @@ public class SimulatorLauncher {
 	 */
 	public static void lauchSimulation2(int N, int nSim, double confidenceLevel, double T, DistributionType type, double[] param, LogForm logFrm){
 		long ora = System.currentTimeMillis();
-		new TrafficGenerator(N,nSim,confidenceLevel,T,type, param,logFrm).run();
+		double[][] fileContent = new TrafficGenerator(N,nSim,confidenceLevel,T,type, param,logFrm).run();
+		Utility.createCSVFile("TrafficGen_"+type.toString(),null, fileContent);
 		long tempo = System.currentTimeMillis()-ora;
 		logFrm.log("Durata Simulazione: "+(tempo*1.0/1000)+" secondi");
 	}
