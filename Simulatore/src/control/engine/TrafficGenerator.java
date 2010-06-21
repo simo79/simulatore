@@ -46,8 +46,9 @@ public class TrafficGenerator {
 	/**
 	 * Metodo che lancia l'esecuzione del simulatore
 	 */
-	public void run(){	
-		double[] result = new double[nSim];
+	public double[][] run(){	
+		double[] tmp = new double[nSim];
+		double[][] result = new double[nSim][2];
 		int i=0;
 		int j=0;
 		double now=0;
@@ -65,13 +66,18 @@ public class TrafficGenerator {
 					arrivi++;
 				i++;
 			}
-			result[j]=arrivi;
+			tmp[j]=arrivi;
+			result[j][0]=j+1;
+			result[j][1]=arrivi;
 			logFrm.log("[step "+j+"] K(T)= "+arrivi);
 			j++;
 			logFrm.getJPBstatus().setValue(j);
 		}
-		logFrm.log("E[K(T)]: "+Utility.mediaCamp(result));
-		logFrm.log("Confidenza: "+Utility.semiAmpiezza(result, confidenceLevel));
-		logFrm.log("IDC(T): "+Utility.indiceDisp(result));	
+		logFrm.log(" ");
+		logFrm.log("E[K(T)]: "+Utility.mediaCamp(tmp));
+		logFrm.log("Var[K(T)]: "+Utility.varCamp(tmp));
+		logFrm.log("Confidenza: "+Utility.semiAmpiezza(tmp, confidenceLevel));
+		logFrm.log("IDC(T): "+Utility.indiceDisp(tmp));
+		return result;
 	}
 }
